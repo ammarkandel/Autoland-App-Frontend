@@ -2,8 +2,8 @@
 import useInput from '../../hooks/use-input';
 import './Login.css';
 
-const isNotEmpty = (value) => value.trim() !== '';
-const isEmail = (value) => value.includes('@');
+const charNumber = (value) => value.length >= 6;
+const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
 const Login = () => {
 
@@ -14,7 +14,7 @@ const Login = () => {
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordBlurHandler,
     reset: resetPassword,
-  } = useInput(isNotEmpty);
+  } = useInput(charNumber);
 
   const {
     value: emailValue,
@@ -69,7 +69,7 @@ const Login = () => {
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
           />
-          {passwordHasError && <p className="error-text">Please enter a valid password</p>}
+          {passwordHasError && <p className="error-text">Please enter a valid password[At least 6 characters]</p>}
         </div>
         <div className='form-actions'>
           <button disabled={!formIsValid}>Submit</button>
