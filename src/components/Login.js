@@ -1,20 +1,10 @@
 /* eslint-disable */
-import useInput from '../../hooks/use-input';
+import useInput from '../hooks/use-input';
 
-const isPassword = (value) => value.length >= 6;
-const isUsername = (value) => value.length > 3;
+const charNumber = (value) => value.length >= 6;
 const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
-const Signup = () => {
-
-  const {
-    value: usernameValue,
-    isValid: usernameIsValid,
-    hasError: usernameHasError,
-    valueChangeHandler: usernameChangeHandler,
-    inputBlurHandler: usernameBlurHandler,
-    reset: resetUsername,
-  } = useInput(isUsername);
+const Login = () => {
 
   const {
     value: passwordValue,
@@ -23,7 +13,7 @@ const Signup = () => {
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordBlurHandler,
     reset: resetPassword,
-  } = useInput(isPassword);
+  } = useInput(charNumber);
 
   const {
     value: emailValue,
@@ -36,7 +26,7 @@ const Signup = () => {
 
   let formIsValid = false;
 
-  if (passwordIsValid && emailIsValid && usernameIsValid) {
+  if (passwordIsValid && emailIsValid) {
     formIsValid = true;
   }
 
@@ -51,26 +41,14 @@ const Signup = () => {
     console.log(passwordValue, emailValue);
 
     resetPassword();
-    resetConfirmationPassword();
     resetEmail();
   };
 
-  const usernameClasses = usernameHasError ? 'form-control invalid' : 'form-control';
   const passwordClasses = passwordHasError ? 'form-control invalid' : 'form-control';
   const emailClasses = emailHasError ? 'form-control invalid' : 'form-control';
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className={usernameClasses}>
-        <label htmlFor='name'>Username</label>
-        <input
-          type='text'
-          value={usernameValue}
-          onChange={usernameChangeHandler}
-          onBlur={usernameBlurHandler}
-        />
-        {usernameHasError && <p className="error-text">Please enter a valid username</p>}
-      </div>
+    <form onSubmit={submitHandler} className='form'>
       <div className={emailClasses}>
         <label htmlFor='name'>E-Mail Address</label>
         <input
@@ -92,23 +70,13 @@ const Signup = () => {
           />
           {passwordHasError && <p className="error-text">Please enter a valid password[At least 6 characters]</p>}
         </div>
-        <div className={passwordClasses}>
-          <label htmlFor='name'>Password confirmation</label>
-          <input
-            type='password'
-            value={passwordValue}
-            onChange={passwordChangeHandler}
-            onBlur={passwordBlurHandler}
-          />
-          {passwordHasError && <p className="error-text">Please enter a valid password[At least 6 characters]</p>}
-        </div>
         <div className='form-actions'>
           <button disabled={!formIsValid}>Submit</button>
-          <a href='login'>Login if you already have account</a>
+          <a href='signup'>Signup if you not have account</a>
         </div>
       </div>
     </form>
   );
 };
 
-export default Signup;
+export default Login;

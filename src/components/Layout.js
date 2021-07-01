@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import MainNav from './MainNav/MainNav';
+import classes from './Layout.module.css';
 
 const Layout = (props) => {
   const { children } = props;
@@ -7,7 +8,7 @@ const Layout = (props) => {
   return (
     <>
       <MainNav />
-      <main>
+      <main className={classes.main}>
         { children }
       </main>
     </>

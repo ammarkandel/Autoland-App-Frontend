@@ -1,4 +1,40 @@
 .main_nav {
-  height: 4rem;
-  background-color: red;
+  height: 8rem;
+  background-color: #97BF1C;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem 0 1rem;
+}
+
+.main_nav h1 {
+  font-family: 'Arizonia', cursive;
+  font-size: 3rem;
+  color: white;
+}
+
+.logo {
+  color: black;
+}
+
+.nav_links a {
+  color: white;
+}
+
+.nav_links li {
+  display: inline-block;
+  font-weight: 700;
+}
+
+.nav_links li:last-child {
+  margin-left: 1rem;
+}
+
+@media (min-width: 992px) {
+  .main_nav {
+    height: 5rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }

@@ -5,11 +5,11 @@ import Appointments from './components/Appointments/Appointments';
 import CarDetails from './components/CarDetails/CarDetails';
 import NotFound from './components/NotFound/NotFound';
 import Layout from './components/Layout';
-import Login from './components/Login/Login';
-import Signup from './components/Signup/Signup';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 function App() {
-  const auth = false;
+  const auth = true;
 
   const checkAuth = () => {
     if (auth) {
