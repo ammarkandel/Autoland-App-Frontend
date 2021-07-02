@@ -1,15 +1,18 @@
 /* eslint-disable */
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Notification from './components/Notification/Notification';
 import Cars from './components/Cars/Cars';
 import Appointments from './components/Appointments/Appointments';
 import CarDetails from './components/CarDetails/CarDetails';
 import NotFound from './components/NotFound/NotFound';
 import Layout from './components/Layout';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 
 function App() {
-  const auth = true;
+  const auth = useSelector((state) => state.authInfo.auth);
+  const notification = useSelector((state) => state.authInfo.notification);
 
   const checkAuth = () => {
     if (auth) {
@@ -48,10 +51,10 @@ function App() {
                <Redirect to="/login" />
              </Route>
              <Route path="/login" exact>
-               <Login />
+               <LoginForm />
              </Route>
              <Route path="/signup" exact>
-               <Signup />
+               <SignupForm />
              </Route>
              <Route path="*" exact>
                <NotFound />
@@ -63,9 +66,18 @@ function App() {
   }
 
   return (
+    <>
+    { notification &&
+      <Notification
+      message = {notification.message}
+      title = {notification.title}
+      status = {notification.status}
+      />
+    }
     <Layout>
         {checkAuth()}
     </Layout>
+    </>
   );
 }
 

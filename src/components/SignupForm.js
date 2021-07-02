@@ -1,11 +1,15 @@
 /* eslint-disable */
+import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
+import { authActions } from '../store/slices/AuthSlice';
+import signup from '../store/actions/signup_action';
 
 const isPassword = (value) => value.length >= 6;
 const isUsername = (value) => value.length > 3;
 const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
-const Signup = () => {
+const SignupForm = () => {
+  const dispatch = useDispatch();
 
   const {
     value: usernameValue,
@@ -47,12 +51,19 @@ const Signup = () => {
       return;
     }
 
+    const signupData = {'user': {
+        username: usernameValue,
+        email: emailValue,
+        password: passwordValue,
+        password_confirmation: passwordValue,
+      }};
+
     console.log('Submitted!');
-    console.log(passwordValue, emailValue);
+    dispatch(signup(signupData));
 
     resetPassword();
-    resetConfirmationPassword();
     resetEmail();
+    resetUsername();
   };
 
   const usernameClasses = usernameHasError ? 'form-control invalid' : 'form-control';
@@ -111,4 +122,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupForm;

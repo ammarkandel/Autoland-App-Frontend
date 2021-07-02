@@ -4,7 +4,7 @@ import useInput from '../hooks/use-input';
 const charNumber = (value) => value.length >= 6;
 const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
-const Login = () => {
+const LoginForm = () => {
 
   const {
     value: passwordValue,
@@ -79,4 +79,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
