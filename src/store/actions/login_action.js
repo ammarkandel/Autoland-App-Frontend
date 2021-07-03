@@ -13,10 +13,13 @@ const login = (loginData) => {
 
     const sendRequest = async () => {
       const response = await fetch(
-        'http://localhost:3000/auth/signin',
+        '/auth/signin',
         {
           method: 'POST',
-          body: JSON.stringify(loginData),
+          headers: {
+            'Content-type': 'application/x-www-form-urlencoded',
+          },
+          body: `auth[email]=${loginData.email}&auth[password]=${loginData.password}`,
         }
       );
 
@@ -32,16 +35,16 @@ const login = (loginData) => {
         authActions.showNotification({
           status: 'success',
           title: 'Success!',
-          message: 'Login successfully!',
-        })
+          message: 'Sign in successfully!',
+        }),
       );
     } catch (error) {
       dispatch(
         authActions.showNotification({
           status: 'error',
           title: 'Error!',
-          message: 'Login failed!',
-        })
+          message: 'Sign in failed!',
+        }),
       );
     }
   };

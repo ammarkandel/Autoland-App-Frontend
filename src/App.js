@@ -12,58 +12,8 @@ import SignupForm from './components/SignupForm';
 
 function App() {
   const auth = useSelector((state) => state.authInfo.auth);
+  console.log(auth);
   const notification = useSelector((state) => state.authInfo.notification);
-
-  const checkAuth = () => {
-    if (auth) {
-      return (
-        <>
-         <Switch>
-            <Route path="/" exact>
-              <Redirect to="/cars" />
-            </Route>
-            <Route path="/login" exact>
-              <Redirect to="/cars" />
-            </Route>
-            <Route path="/cars" exact>
-              <Cars />
-            </Route>
-            <Route path="/appointments" exact>
-              <Appointments />
-            </Route>
-            <Route path="/cars/:id">
-              <CarDetails />
-            </Route>
-            <Route path="*" exact>
-              <NotFound />
-            </Route>
-         </Switch>
-        </>
-      )
-    } else {
-       return (
-         <>
-           <Switch>
-             <Route path="/" exact>
-               <Redirect to="/login" />
-             </Route>
-             <Route path="/cars" exact>
-               <Redirect to="/login" />
-             </Route>
-             <Route path="/login" exact>
-               <LoginForm />
-             </Route>
-             <Route path="/signup" exact>
-               <SignupForm />
-             </Route>
-             <Route path="*" exact>
-               <NotFound />
-             </Route>
-           </Switch>
-         </>
-       )
-    }
-  }
 
   return (
     <>
@@ -75,7 +25,20 @@ function App() {
       />
     }
     <Layout>
-        {checkAuth()}
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/login" />
+        </Route>
+        <Route path="/cars" exact>
+          <Redirect to="/login" />
+        </Route>
+        <Route path="/login" exact>
+          <LoginForm />
+        </Route>
+        <Route path="/signup" exact>
+          <SignupForm />
+        </Route>
+       </Switch>
     </Layout>
     </>
   );

@@ -1,10 +1,14 @@
 /* eslint-disable */
+import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
+import { authActions } from '../store/slices/AuthSlice';
+import login from '../store/actions/login_action';
 
 const charNumber = (value) => value.length >= 6;
 const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
 
   const {
     value: passwordValue,
@@ -37,8 +41,14 @@ const LoginForm = () => {
       return;
     }
 
+    const loginData = {
+        email: emailValue,
+        password: passwordValue,
+    };
+
     console.log('Submitted!');
     console.log(passwordValue, emailValue);
+    dispatch(login(loginData));
 
     resetPassword();
     resetEmail();

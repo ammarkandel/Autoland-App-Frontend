@@ -51,12 +51,14 @@ const SignupForm = () => {
       return;
     }
 
-    const signupData = {'user': {
+    const signupData = {
         username: usernameValue,
         email: emailValue,
         password: passwordValue,
         password_confirmation: passwordValue,
-      }};
+    };
+
+    console.log();
 
     console.log('Submitted!');
     dispatch(signup(signupData));
