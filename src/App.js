@@ -9,11 +9,11 @@ import NotFound from './components/NotFound/NotFound';
 import Layout from './components/Layout';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import SecureRoute from './containers/SecureRoute';
 
 function App() {
-  const auth = useSelector((state) => state.authInfo.auth);
-  console.log(auth);
   const notification = useSelector((state) => state.authInfo.notification);
+  const auth = localStorage.getItem("auth");
 
   return (
     <>
@@ -27,17 +27,14 @@ function App() {
     <Layout>
       <Switch>
         <Route path="/" exact>
-          <Redirect to="/login" />
+          <Redirect to={auth == "true" ? "/cars" : "/login"} />
         </Route>
-        <Route path="/cars" exact>
-          <Redirect to="/login" />
-        </Route>
-        <Route path="/login" exact>
-          <LoginForm />
-        </Route>
-        <Route path="/signup" exact>
-          <SignupForm />
-        </Route>
+        <Route path="/login" component={LoginForm}></Route>
+        <Route path="/signup" component={SignupForm}></Route>
+        <SecureRoute path="/cars" component={Cars}></SecureRoute>
+        <SecureRoute path="/appointments" component={Appointments}></SecureRoute>
+        <SecureRoute path="/cars/:id" component={CarDetails}></SecureRoute>
+        <Route path="*" component={NotFound}></Route>
        </Switch>
     </Layout>
     </>

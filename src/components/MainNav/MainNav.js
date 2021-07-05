@@ -1,9 +1,23 @@
 /* eslint-disable */
 import classes from './MainNav.module.css';
-import { useSelector } from 'react-redux';
+import { NavLink, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { authActions } from '../../store/slices/AuthSlice';
 
 const MainNav = () => {
-  const auth = useSelector((state) => state.authInfo.auth);
+  const dispatch = useDispatch();
+  const auth = localStorage.getItem("auth");
+  const logoutHandler = () => {
+    dispatch(authActions.askAuth())
+    localStorage.setItem("auth", "false");
+    dispatch(
+      authActions.showNotification({
+        status: 'success',
+        title: 'Logout!',
+        message: 'Logout successfully!',
+      }),
+    );
+  };
 
   return (
   <nav className={classes.main_nav}>
@@ -11,12 +25,15 @@ const MainNav = () => {
       Auto
       <span className={classes.logo}>land</span>
     </h1>
-    {auth &&
+
       <ul className={classes.nav_links}>
-        <li><a href="/">Logout</a></li>
-        <li><a href="/appointments">Appointments</a></li>
+        {auth == "true" && (
+          <>
+            <li><Link to="/login" onClick={() => logoutHandler()}>Logout</Link></li>
+            <li><NavLink to="/appointments">Appointments</NavLink></li>
+          </>
+        )}
       </ul>
-    }
   </nav>
   )
 };

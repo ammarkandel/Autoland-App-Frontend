@@ -42,14 +42,11 @@ const LoginForm = () => {
     }
 
     const loginData = {
-        email: emailValue,
-        password: passwordValue,
+      email: emailValue,
+      password: passwordValue,
     };
 
-    console.log('Submitted!');
-    console.log(passwordValue, emailValue);
     dispatch(login(loginData));
-
     resetPassword();
     resetEmail();
   };

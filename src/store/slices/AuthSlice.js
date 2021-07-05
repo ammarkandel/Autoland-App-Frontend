@@ -7,6 +7,7 @@ const authSlice = createSlice({
   reducers: {
     askAuth(state) {
       state.auth = !state.auth;
+      localStorage.setItem("auth", state.auth);
     },
     showNotification(state, { payload }) {
       state.notification = {

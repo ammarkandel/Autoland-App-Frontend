@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { authActions } from '../slices/AuthSlice';
 
 const signup = (signupData) => async (dispatch) => {
@@ -6,15 +5,14 @@ const signup = (signupData) => async (dispatch) => {
     authActions.showNotification({
       status: 'pending',
       title: 'Sending...',
-      message: 'Wait Signing up',
+      message: 'Wait signup',
     }),
   );
 
   const sendRequest = async () => {
-    const sendData = `user[username]=${signupData.username}
-                     &user[email]=${signupData.email}&user[password]=${signupData.password}
-                     &user[password_confirmation]=${signupData.password}`;
-
+    const data = `user[username]=${signupData.username}&user[email]=${signupData.email}
+                 &user[password]=${signupData.password}
+                 &user[password_confirmation]=${signupData.password}`;
     const response = await fetch(
       '/auth/signup',
       {
@@ -22,12 +20,12 @@ const signup = (signupData) => async (dispatch) => {
         headers: {
           'Content-type': 'application/x-www-form-urlencoded',
         },
-        body: sendData.replace(/\s+/g, ''),
-      }
+        body: data.replace(/\s/g, ''),
+      },
     );
 
     if (!response.ok) {
-      throw new Error('Sign up failed!');
+      throw new Error('Signup failed!');
     }
   };
 
@@ -41,7 +39,6 @@ const signup = (signupData) => async (dispatch) => {
         message: 'Sign up successfully!',
       }),
     );
-    //dispatch(authActions.askAuth());
   } catch (error) {
     dispatch(
       authActions.showNotification({
