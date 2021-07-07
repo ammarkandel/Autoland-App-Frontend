@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import useInput from '../hooks/use-input';
 import { authActions } from '../store/slices/AuthSlice';
 import login from '../store/actions/login_action';
@@ -9,6 +10,7 @@ const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const auth = localStorage.getItem("jwt");
 
   const {
     value: passwordValue,

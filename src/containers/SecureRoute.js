@@ -6,11 +6,11 @@ import { authActions } from '../store/slices/AuthSlice';
 
 const SecureRoute = (props) => {
   const dispatch = useDispatch();
-  const auth = localStorage.getItem("auth");
+  const auth = localStorage.getItem("jwt");
 
   return (
     <Route path={props.path} render={(data) => {
-      if (auth == "true") {
+      if (auth) {
         return (<props.component {...data}></props.component>)
       } else {
         dispatch(

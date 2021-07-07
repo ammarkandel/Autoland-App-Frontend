@@ -1,18 +1,18 @@
+/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import history from './history';
+import { Router, Route, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/index';
 import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <Provider store={store}>
-        <App />
-      </Provider>
+  <Provider store={store}>
+    <Router history={history}>
+      <App />
     </Router>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root'),
 );

@@ -13,30 +13,29 @@ import SecureRoute from './containers/SecureRoute';
 
 function App() {
   const notification = useSelector((state) => state.authInfo.notification);
-  const auth = localStorage.getItem("auth");
+  const auth = localStorage.getItem("jwt");
 
   return (
     <>
-    { notification &&
-      <Notification
-      message = {notification.message}
-      title = {notification.title}
-      status = {notification.status}
-      />
-    }
-    <Layout>
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to={auth == "true" ? "/cars" : "/login"} />
-        </Route>
-        <Route path="/login" component={LoginForm}></Route>
-        <Route path="/signup" component={SignupForm}></Route>
-        <SecureRoute path="/cars" component={Cars}></SecureRoute>
-        <SecureRoute path="/appointments" component={Appointments}></SecureRoute>
-        <SecureRoute path="/cars/:id" component={CarDetails}></SecureRoute>
-        <Route path="*" component={NotFound}></Route>
-       </Switch>
-    </Layout>
+      { notification &&
+        <Notification
+        message = {notification.message}
+        title = {notification.title}
+        status = {notification.status}
+        />
+      }
+      <Layout>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to={auth ? "/cars" : "/login"} />
+          </Route>
+          <Route path="/login" component={LoginForm}></Route>
+          <Route path="/signup" component={SignupForm}></Route>
+          <SecureRoute exact path="/cars" component={Cars}></SecureRoute>
+          <SecureRoute exact path="/appointments" component={Appointments}></SecureRoute>
+          <SecureRoute exact path="/cars/:id" component={CarDetails}></SecureRoute>
+        </Switch>
+      </Layout>
     </>
   );
 }

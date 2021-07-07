@@ -6,10 +6,9 @@ import { authActions } from '../../store/slices/AuthSlice';
 
 const MainNav = () => {
   const dispatch = useDispatch();
-  const auth = localStorage.getItem("auth");
   const logoutHandler = () => {
     dispatch(authActions.askAuth())
-    localStorage.setItem("auth", "false");
+    localStorage.clear();
     dispatch(
       authActions.showNotification({
         status: 'success',
@@ -17,7 +16,15 @@ const MainNav = () => {
         message: 'Logout successfully!',
       }),
     );
+    setTimeout(() => {
+      dispatch(
+        authActions.hideNotification({
+          status: 'hide',
+        }),
+      );
+    }, 1000)
   };
+  const auth = localStorage.getItem("jwt");
 
   return (
   <nav className={classes.main_nav}>
@@ -27,10 +34,11 @@ const MainNav = () => {
     </h1>
 
       <ul className={classes.nav_links}>
-        {auth == "true" && (
+        {auth && (
           <>
             <li><Link to="/login" onClick={() => logoutHandler()}>Logout</Link></li>
             <li><NavLink to="/appointments">Appointments</NavLink></li>
+            <li><NavLink to="/cars">Cars</NavLink></li>
           </>
         )}
       </ul>

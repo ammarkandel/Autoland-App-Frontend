@@ -3,17 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: { auth: false, notification: null },
+  initialState: { notification: null },
   reducers: {
-    askAuth(state) {
-      state.auth = !state.auth;
-      localStorage.setItem("auth", state.auth);
-    },
     showNotification(state, { payload }) {
       state.notification = {
         status: payload.status,
         title: payload.title,
         message: payload.message,
+      };
+    },
+    hideNotification(state, { payload }) {
+      state.notification = {
+        status: payload.status,
       };
     },
   },

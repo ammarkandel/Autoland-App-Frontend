@@ -7,6 +7,7 @@ const Notification = (props) => {
 
   if (status === 'error') alertClasses = classes.error
   if (status === 'success') alertClasses = classes.success
+  if (status === 'hide') alertClasses = classes.hide
 
   const notificationClass = `${classes.notification} ${alertClasses}`;
 

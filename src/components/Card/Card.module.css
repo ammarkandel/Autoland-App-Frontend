@@ -1,0 +1,8 @@
+.card {
+  padding: 1rem;
+  border: 1px gray solid;
+}
+
+.card .car {
+  display: flex;
+}

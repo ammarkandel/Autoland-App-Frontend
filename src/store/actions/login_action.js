@@ -1,15 +1,15 @@
 /* eslint-disable */
-
 import { authActions } from '../slices/AuthSlice';
+import { userActions } from '../slices/UserDataSlice';
 
 const login = (loginData) => async (dispatch) => {
-  dispatch(
-    authActions.showNotification({
-      status: 'pending',
-      title: 'Sending...',
-      message: 'Wait login',
-    }),
-  );
+    dispatch(
+      authActions.showNotification({
+        status: 'pending',
+        title: 'Sending...',
+        message: 'Wait login',
+      }),
+    );
 
   const sendRequest = async () => {
     const response = await fetch(
@@ -33,7 +33,6 @@ const login = (loginData) => async (dispatch) => {
 
   try {
     await sendRequest();
-    dispatch(authActions.askAuth());
     dispatch(
       authActions.showNotification({
         status: 'success',
@@ -41,6 +40,15 @@ const login = (loginData) => async (dispatch) => {
         message: 'Sign in successfully!',
       }),
     );
+    setTimeout(() => {
+      dispatch(
+        authActions.hideNotification({
+          status: 'hide',
+        }),
+      );
+    }, 2000)
+    window.location.href="http://localhost:3000/cars";
+
   } catch (error) {
     dispatch(
       authActions.showNotification({
@@ -49,6 +57,13 @@ const login = (loginData) => async (dispatch) => {
         message: 'Sign in failed!',
       }),
     );
+    setTimeout(() => {
+      dispatch(
+        authActions.hideNotification({
+          status: 'hide',
+        }),
+      );
+    }, 2000)
   }
 };
 

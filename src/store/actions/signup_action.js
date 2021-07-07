@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { authActions } from '../slices/AuthSlice';
 
 const signup = (signupData) => async (dispatch) => {
@@ -31,7 +32,6 @@ const signup = (signupData) => async (dispatch) => {
 
   try {
     await sendRequest();
-
     dispatch(
       authActions.showNotification({
         status: 'success',
@@ -39,6 +39,14 @@ const signup = (signupData) => async (dispatch) => {
         message: 'Sign up successfully!',
       }),
     );
+    setTimeout(() => {
+      dispatch(
+        authActions.hideNotification({
+          status: 'hide',
+        }),
+      );
+    }, 2000)
+    window.location.href="http://localhost:3000/login";
   } catch (error) {
     dispatch(
       authActions.showNotification({
@@ -47,6 +55,13 @@ const signup = (signupData) => async (dispatch) => {
         message: 'Sign up failed!',
       }),
     );
+    setTimeout(() => {
+      dispatch(
+        authActions.hideNotification({
+          status: 'hide',
+        }),
+      );
+    }, 2000)
   }
 };
 

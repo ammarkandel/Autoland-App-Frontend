@@ -27,8 +27,8 @@
   font-weight: 700;
 }
 
-.nav_links li:last-child {
-  margin-left: 1rem;
+.nav_links li:not(:last-child) {
+  margin-right: 1rem;
 }
 
 @media (min-width: 992px) {
