@@ -7,7 +7,6 @@ import { authActions } from '../../store/slices/AuthSlice';
 const MainNav = () => {
   const dispatch = useDispatch();
   const logoutHandler = () => {
-    dispatch(authActions.askAuth())
     localStorage.clear();
     dispatch(
       authActions.showNotification({
