@@ -20,6 +20,13 @@ const SecureRoute = (props) => {
             message: 'Please Sign in first',
           }),
         );
+        setTimeout(() => {
+          dispatch(
+            authActions.hideNotification({
+              status: 'hide',
+            }),
+          );
+        }, 1000)
         return (<Redirect to={{pathname:'/login'}}></Redirect>)
       }
     }}>

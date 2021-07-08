@@ -1,0 +1,30 @@
+.appointment div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.appointment h3 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.appointment input {
+  height: 3rem;
+  width: 15rem;
+  font-size: 0.9rem;
+}
+
+.details {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: wrap;
+  width: 100%;
+  margin: 20px 0 20px 0;
+}
+
+.details li {
+  border: 1px solid #97BF1C;
+  padding: 1rem;
+}

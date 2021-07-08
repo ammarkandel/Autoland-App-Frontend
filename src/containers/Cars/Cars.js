@@ -3,16 +3,16 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import getCarsData from '../../store/actions/get_cars_action';
-import Card from '../Card/Card';
+import Card from '../../components/Card/Card';
 import classes from './Cars.module.css';
 
 const Cars = () => {
-  const carsData = useSelector((state) => state.userInfo.cars[0]);
+  const carsData = useSelector((state) => state.userInfo.cars);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCarsData())
-  }, [dispatch])
+  }, [])
 
   const renderCars = () => {
     if (carsData) {

@@ -9,4 +9,8 @@ module.exports = (app) => {
   app.use(createProxyMiddleware('/auth/signup', {
     target: `http://localhost:3001`,
   }));
+
+  app.use(createProxyMiddleware('/appointments', {
+    target: `http://localhost:3001`,
+  }));
 };

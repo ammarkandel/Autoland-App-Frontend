@@ -2,13 +2,13 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Notification from './components/Notification/Notification';
-import Cars from './components/Cars/Cars';
-import Appointments from './components/Appointments/Appointments';
-import CarDetails from './components/CarDetails/CarDetails';
+import Cars from './containers/Cars/Cars';
+import Appointments from './containers/Appointments/Appointments';
+import CarDetails from './containers/CarDetails/CarDetails';
 import NotFound from './components/NotFound/NotFound';
 import Layout from './components/Layout';
-import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
+import LoginForm from './containers/LoginForm';
+import SignupForm from './containers/SignupForm';
 import SecureRoute from './containers/SecureRoute';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route path="/login" component={LoginForm}></Route>
           <Route path="/signup" component={SignupForm}></Route>
           <SecureRoute exact path="/cars" component={Cars}></SecureRoute>
-          <SecureRoute exact path="/appointments" component={Appointments}></SecureRoute>
+          <SecureRoute exact path="/user_appointments" component={Appointments}></SecureRoute>
           <SecureRoute exact path="/cars/:id" component={CarDetails}></SecureRoute>
         </Switch>
       </Layout>

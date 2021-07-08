@@ -33,11 +33,11 @@ const MainNav = () => {
     </h1>
 
       <ul className={classes.nav_links}>
+        <li><NavLink to="/user_appointments">MyAppointments</NavLink></li>
+        <li><NavLink to="/cars">Cars</NavLink></li>
         {auth && (
           <>
             <li><Link to="/login" onClick={() => logoutHandler()}>Logout</Link></li>
-            <li><NavLink to="/appointments">Appointments</NavLink></li>
-            <li><NavLink to="/cars">Cars</NavLink></li>
           </>
         )}
       </ul>
