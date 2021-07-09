@@ -7,13 +7,13 @@ import { userActions } from '../../store/slices/UserDataSlice';
 import classes from './CarDetails.module.css';
 import testDrive from '../../store/actions/book_appointment_action';
 import getCarsData from '../../store/actions/get_cars_action';
+import CarAppointments from './CarAppointments';
 
 const CarDetails = () => {
   const dispatch = useDispatch();
   const id = useParams().id.slice(1);
   const userId = useSelector((state) => state.userInfo.user).sub;
   const carsData = useSelector((state) => state.userInfo.cars).filter((car) => car.id == id)[0];
-  console.log(carsData);
   useEffect(() => {
     dispatch(getCarsData())
     dispatch(userActions.userData());
@@ -87,9 +87,12 @@ const CarDetails = () => {
 
   return (
     <>
+     <h3>- Tests drive booked -</h3>
+     <CarAppointments id={id} />
+     <h3>- Car Details -</h3>
      {renderCarDetails()}
      <form className={classes.appointment} onSubmit={submitHandler}>
-       <h3>Book test drive</h3>
+       <h3>- Book test drive -</h3>
        <div className={dateClasses}>
          <input type="date"
          value={dateValue}

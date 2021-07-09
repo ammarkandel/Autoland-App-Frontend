@@ -19,7 +19,7 @@
   list-style-type: none;
   display: flex;
   justify-content: space-around;
-  flex-direction: wrap;
+  flex-wrap: wrap;
   width: 100%;
   margin: 20px 0 20px 0;
 }
@@ -27,4 +27,5 @@
 .details li {
   border: 1px solid #97BF1C;
   padding: 1rem;
+  margin-top: 1rem;
 }
