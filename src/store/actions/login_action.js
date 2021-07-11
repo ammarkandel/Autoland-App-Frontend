@@ -13,7 +13,7 @@ const login = (loginData) => async (dispatch) => {
 
   const sendRequest = async () => {
     const response = await fetch(
-      '/auth/signin',
+      'https://autoland-api.herokuapp.com/auth/signin.json',
       {
         method: 'POST',
         headers: {
@@ -22,7 +22,6 @@ const login = (loginData) => async (dispatch) => {
         body: `auth[email]=${loginData.email}&auth[password]=${loginData.password}`,
       },
     );
-
     if (response.ok) {
       const data = await response.json();
       localStorage.setItem("jwt", data.jwt);
@@ -47,7 +46,7 @@ const login = (loginData) => async (dispatch) => {
         }),
       );
     }, 2000)
-    window.location.href="http://localhost:3000/cars";
+    window.location.href= window.location.origin + "/cars";
 
   } catch (error) {
     dispatch(

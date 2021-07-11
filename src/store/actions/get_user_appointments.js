@@ -18,13 +18,13 @@ const getAppointmentsData = () => async (dispatch) => {
     );
   }, 2000)
   const sendRequest = async () => {
-    let token = "Bearer " + localStorage.getItem("jwt");
+    //let token = "Bearer " + localStorage.getItem("jwt");
     const response = await fetch(
-      'http://localhost:3001/user_appointments.json',
+      'https://autoland-api.herokuapp.com/user_appointments.json',
       {
         method: 'GET',
         headers: {
-          'Authorization': token,
+          //'Authorization': token,
           'Content-type': 'application/json',
         },
       },

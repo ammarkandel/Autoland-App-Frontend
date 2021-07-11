@@ -15,7 +15,7 @@ const signup = (signupData) => async (dispatch) => {
                  &user[password]=${signupData.password}
                  &user[password_confirmation]=${signupData.password}`;
     const response = await fetch(
-      '/auth/signup',
+      'https://autoland-api.herokuapp.com/auth/signup.json',
       {
         method: 'POST',
         headers: {
@@ -46,7 +46,7 @@ const signup = (signupData) => async (dispatch) => {
         }),
       );
     }, 2000)
-    window.location.href="http://localhost:3000/login";
+    window.location.href= window.location.origin + "/cars";
   } catch (error) {
     dispatch(
       authActions.showNotification({
