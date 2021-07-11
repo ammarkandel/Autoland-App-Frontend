@@ -1,6 +1,6 @@
 # Autoland
 
-## Build a autoland app for clients can login or signup after that can see list of cars and it's details also book test drive for car they prefere.
+## Build a autoland app for clients can login or signup after that can see list of cars and it's details also book test drive for car they prefer.
 
 ## Build with:
 
