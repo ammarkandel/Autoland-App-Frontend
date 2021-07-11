@@ -1,6 +1,6 @@
 /* eslint-disable */
 import PropTypes from 'prop-types';
-import MainNav from './MainNav/MainNav';
+import MainNav from '../containers/MainNav/MainNav';
 import classes from './Layout.module.css';
 
 const Layout = (props) => {

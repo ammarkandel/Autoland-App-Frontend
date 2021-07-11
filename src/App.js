@@ -34,6 +34,7 @@ function App() {
           <SecureRoute exact path="/cars" component={Cars}></SecureRoute>
           <SecureRoute exact path="/user_appointments" component={Appointments}></SecureRoute>
           <SecureRoute exact path="/cars/:id" component={CarDetails}></SecureRoute>
+          <Route path="*" component={NotFound}></Route>
         </Switch>
       </Layout>
     </>
