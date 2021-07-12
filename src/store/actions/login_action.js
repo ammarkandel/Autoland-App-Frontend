@@ -13,7 +13,7 @@ const login = (loginData) => async (dispatch) => {
 
   const sendRequest = async () => {
     const response = await fetch(
-      '/auth/signin.json',
+      'https://autoland-api.herokuapp.com/auth/signin.json',
       {
         method: 'POST',
         headers: {

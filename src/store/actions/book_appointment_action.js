@@ -17,7 +17,7 @@ const testDrive = (appointmentData) => async (dispatch) => {
                   &appointment[user_id]=${appointmentData.user_id}
                   &appointment[car_id]=${appointmentData.car_id}`;
     const response = await fetch(
-      '/appointments.json',
+      'https://autoland-api.herokuapp.com/appointments.json',
       {
         method: 'POST',
         headers: {

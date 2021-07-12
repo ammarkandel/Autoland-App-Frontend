@@ -15,7 +15,7 @@ const signup = (signupData) => async (dispatch) => {
                  &user[password]=${signupData.password}
                  &user[password_confirmation]=${signupData.password}`;
     const response = await fetch(
-      '/auth/signup.json',
+      'https://autoland-api.herokuapp.com/auth/signup.json',
       {
         method: 'POST',
         headers: {
