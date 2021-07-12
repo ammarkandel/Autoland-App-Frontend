@@ -39,6 +39,11 @@ a {
   max-width: 100%;
 }
 
+.invalid input {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
 .form-control input:focus {
   outline: none;
   background-color: rgba(152, 192, 31, 0.2);
@@ -57,7 +62,7 @@ a {
 
 button {
   font: inherit;
-  background-color: #97BF1C;
+  background-color: #97bf1c;
   color: white;
   border: 1px solid white;
   padding: 0.5rem 1.5rem;
@@ -65,10 +70,14 @@ button {
   cursor: pointer;
 }
 
+.form-actions button {
+  margin-left: 1rem;
+}
+
 button:hover,
 button:active {
   background-color: white;
-  border-color: #97BF1C;
+  border-color: #97bf1c;
   color: #97BF1C;
 }
 
@@ -87,7 +96,7 @@ button:disabled:active {
 }
 
 .form a {
-  color: #97BF1C;
+  color: #97bf1c;
   text-align: center;
 }
 
@@ -97,17 +106,8 @@ button:disabled:active {
   flex-direction: column;
 }
 
-.form-actions button {
-  margin-left: 1rem;
-}
-
-.invalid input {
-  border: 1px solid #b40e0e;
-  background-color: #fddddd;
-}
-
 .invalid input:focus {
-  border-color: #ff8800;
+  border-color: #f80;
   background-color: #fbe8d2;
 }
 
