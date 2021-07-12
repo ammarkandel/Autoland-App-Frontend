@@ -18,7 +18,7 @@
 
 ## Live Version
 
-#### Current you can go to (How to run this project) next section.
+[Live Version](https://autoland-app.vercel.app/)
 
 ### How to run this project
 
@@ -26,9 +26,6 @@
 - Second: Make sure you have yarn globally in your machine `yarn --version` if not run `npm install --global yarn`.
 - Third: Make sure you in the project path in the terminal then run `yarn install` and `yarn start` to start the localhost.
 - Fourth: your localhost should be `http://localhost:3000/`
-- Fifth: clone the backend repo `git@github.com:ammarkandel/Autoland-App-Backend.git`
-- Sixth: move to Autoland-App-Backend path on terminal.
-- Seventh: Write `rails db:create` then `rails db:migrate` then `rails s` this will open the localhost it should be `http://localhost:3001/`.
 
 ### Author
 
