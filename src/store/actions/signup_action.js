@@ -46,7 +46,7 @@ const signup = (signupData) => async (dispatch) => {
         }),
       );
     }, 2000)
-    window.location.href= window.location.origin + "/cars";
+    window.location.href= window.location.origin + "/login";
   } catch (error) {
     dispatch(
       authActions.showNotification({
