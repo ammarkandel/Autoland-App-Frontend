@@ -78,7 +78,7 @@ button:hover,
 button:active {
   background-color: white;
   border-color: #97bf1c;
-  color: #97BF1C;
+  color: #97bf1c;
 }
 
 button:disabled,
