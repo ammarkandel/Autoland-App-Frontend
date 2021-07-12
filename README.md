@@ -8,11 +8,6 @@
 - css
 - @reduxjs-toolkit
 
-## Run tests:
-
-- Open terminal in the directory of the project
-- Run `yarn test`
-
 ## Live Version
   [Live Version](https://autoland-app.vercel.app)
 
