@@ -88,7 +88,7 @@ const CarDetails = () => {
   return (
     <>
      <h3>- Tests drive booked -</h3>
-     <CarAppointments id={id} />
+     <CarAppointments id={id} user_id={userId} />
      <h3>- Car Details -</h3>
      {renderCarDetails()}
      <form className={classes.appointment} onSubmit={submitHandler}>

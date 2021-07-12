@@ -18,13 +18,13 @@ const getCarsData = () => async (dispatch) => {
     );
   }, 2000)
   const sendRequest = async () => {
-    //let token = "Bearer " + localStorage.getItem("jwt");
+    let token = "Bearer " + localStorage.getItem("jwt");
     const response = await fetch(
-      'https://autoland-api.herokuapp.com/cars.json',
+      'http://localhost:3001/cars.json',
       {
         method: 'GET',
         headers: {
-          //'Authorization': token,
+          'Authorization': token,
           'Content-type': 'application/json',
         },
       },

@@ -11,17 +11,17 @@ const testDrive = (appointmentData) => async (dispatch) => {
     );
 
   const sendRequest = async () => {
-    //let token = "Bearer " + localStorage.getItem("jwt");
+    let token = "Bearer " + localStorage.getItem("jwt");
     const data = `appointment[date]=${appointmentData.date}
                   &appointment[time]=${appointmentData.time}
                   &appointment[user_id]=${appointmentData.user_id}
                   &appointment[car_id]=${appointmentData.car_id}`;
     const response = await fetch(
-      'https://autoland-api.herokuapp.com/appointments.json',
+      '/appointments.json',
       {
         method: 'POST',
         headers: {
-          //'Authorization': token,
+          'Authorization': token,
           'Content-type': 'application/x-www-form-urlencoded',
         },
         body: data.replace(/\s/g, ''),
