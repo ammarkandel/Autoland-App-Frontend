@@ -14,7 +14,7 @@
 
 #### The backend is api created with ruby on rails.
 
-`git@github.com:ammarkandel/Autoland-App-Backend.git`
+`github.com/ammarkandel/Autoland-App-Backend`
 
 ## Live Version
 
