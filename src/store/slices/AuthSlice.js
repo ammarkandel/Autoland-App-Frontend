@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
@@ -19,7 +18,6 @@ const authSlice = createSlice({
     },
   },
 });
-
 
 export const authActions = authSlice.actions;
 

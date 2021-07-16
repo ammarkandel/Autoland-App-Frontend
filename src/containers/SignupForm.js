@@ -1,7 +1,5 @@
-/* eslint-disable */
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
-import { authActions } from '../store/slices/AuthSlice';
 import signup from '../store/actions/signup_action';
 
 const isPassword = (value) => value.length >= 6;
@@ -44,7 +42,7 @@ const SignupForm = () => {
     formIsValid = true;
   }
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
     if (!formIsValid) {
@@ -52,15 +50,12 @@ const SignupForm = () => {
     }
 
     const signupData = {
-        username: usernameValue,
-        email: emailValue,
-        password: passwordValue,
-        password_confirmation: passwordValue,
+      username: usernameValue,
+      email: emailValue,
+      password: passwordValue,
+      password_confirmation: passwordValue,
     };
 
-    console.log();
-
-    console.log('Submitted!');
     dispatch(signup(signupData));
 
     resetPassword();
@@ -73,11 +68,11 @@ const SignupForm = () => {
   const emailClasses = emailHasError ? 'form-control invalid' : 'form-control';
 
   return (
-    <form onSubmit={submitHandler} className='form'>
+    <form onSubmit={submitHandler} className="form">
       <div className={usernameClasses}>
-        <label htmlFor='name'>Username</label>
+        <label htmlFor="name">Username</label>
         <input
-          type='text'
+          type="text"
           value={usernameValue}
           onChange={usernameChangeHandler}
           onBlur={usernameBlurHandler}
@@ -85,20 +80,20 @@ const SignupForm = () => {
         {usernameHasError && <p className="error-text">Please enter a valid username</p>}
       </div>
       <div className={emailClasses}>
-        <label htmlFor='name'>E-Mail Address</label>
+        <label htmlFor="name">E-Mail Address</label>
         <input
-          type='email'
+          type="email"
           value={emailValue}
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
         />
         {emailHasError && <p className="error-text">Please enter a valid email address.</p>}
       </div>
-      <div className='control-group'>
+      <div className="control-group">
         <div className={passwordClasses}>
-          <label htmlFor='name'>Password</label>
+          <label htmlFor="name">Password</label>
           <input
-            type='password'
+            type="password"
             value={passwordValue}
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
@@ -106,18 +101,18 @@ const SignupForm = () => {
           {passwordHasError && <p className="error-text">Please enter a valid password[At least 6 characters]</p>}
         </div>
         <div className={passwordClasses}>
-          <label htmlFor='name'>Password confirmation</label>
+          <label htmlFor="name">Password confirmation</label>
           <input
-            type='password'
+            type="password"
             value={passwordValue}
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
           />
           {passwordHasError && <p className="error-text">Please enter a valid password[At least 6 characters]</p>}
         </div>
-        <div className='form-actions'>
-          <button disabled={!formIsValid}>Submit</button>
-          <a href='login'>Login if you already have account</a>
+        <div className="form-actions">
+          <button type="submit" disabled={!formIsValid}>Submit</button>
+          <a href="login">Login if you already have account</a>
         </div>
       </div>
     </form>

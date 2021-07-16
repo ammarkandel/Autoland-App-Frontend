@@ -1,6 +1,5 @@
-/* eslint-disable */
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import useInput from '../../hooks/use-input';
 import { userActions } from '../../store/slices/UserDataSlice';
@@ -10,14 +9,15 @@ import getCarsData from '../../store/actions/get_cars_action';
 import CarAppointments from './CarAppointments';
 
 const CarDetails = () => {
+  const [updated, setUpdated] = useState(false);
   const dispatch = useDispatch();
   const id = useParams().id.slice(1);
   const userId = useSelector((state) => state.userInfo.user).sub;
   const carsData = useSelector((state) => state.userInfo.cars).filter((car) => car.id == id)[0];
   useEffect(() => {
-    dispatch(getCarsData())
+    dispatch(getCarsData());
     dispatch(userActions.userData());
-  }, [])
+  }, []);
 
   const isEmpty = (str) => !str.trim().length;
   const isValidDate = (value) => !isEmpty(value);
@@ -47,7 +47,7 @@ const CarDetails = () => {
     formIsValid = true;
   }
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
     if (!formIsValid) {
@@ -57,27 +57,39 @@ const CarDetails = () => {
     const testDriveData = {
       date: dateValue,
       time: timeValue,
-      user_id: userId,
+      userId,
       car_id: id,
     };
 
     dispatch(testDrive(testDriveData));
     resetDate();
     resetTime();
+    setUpdated(!updated);
   };
 
   const timeClasses = timeHasError ? 'form-control invalid' : 'form-control';
   const dateClasses = dateHasError ? 'form-control invalid' : 'form-control';
 
-
   const renderCarDetails = () => {
     if (carsData) {
       return (
         <ul className={classes.details}>
-          <li>Release year: {carsData.release_year}</li>
-          <li>Speed: {carsData.speed}</li>
-          <li>Price: {carsData.price}</li>
-          <li>Color: {carsData.color}</li>
+          <li>
+            Release year:
+            {carsData.release_year}
+          </li>
+          <li>
+            Speed:
+            {carsData.speed}
+          </li>
+          <li>
+            Price:
+            {carsData.price}
+          </li>
+          <li>
+            Color:
+            {carsData.color}
+          </li>
         </ul>
       );
     }
@@ -87,32 +99,34 @@ const CarDetails = () => {
 
   return (
     <>
-     <h3>- Tests drive booked -</h3>
-     <CarAppointments id={id} user_id={userId} />
-     <h3>- Car Details -</h3>
-     {renderCarDetails()}
-     <form className={classes.appointment} onSubmit={submitHandler}>
-       <h3>- Book test drive -</h3>
-       <div className={dateClasses}>
-         <input type="date"
-         value={dateValue}
-         onChange={dateChangeHandler}
-         onBlur={dateBlurHandler}
-         />
-         {dateHasError && <p className="error-text">Please enter a valid date.</p>}
-       </div>
-       <div className={timeClasses}>
-         <input type="time"
-         value={timeValue}
-         onChange={timeChangeHandler}
-         onBlur={timeBlurHandler}
-         />
-         {timeHasError && <p className="error-text">Please enter a valid time.</p>}
-       </div>
-       <button>BOOK</button>
-     </form>
+      <h3>- Tests drive booked -</h3>
+      <CarAppointments id={id} updateAppointments={updated} userId={userId} />
+      <h3>- Car Details -</h3>
+      {renderCarDetails()}
+      <form className={classes.appointment} onSubmit={submitHandler}>
+        <h3>- Book test drive -</h3>
+        <div className={dateClasses}>
+          <input
+            type="date"
+            value={dateValue}
+            onChange={dateChangeHandler}
+            onBlur={dateBlurHandler}
+          />
+          {dateHasError && <p className="error-text">Please enter a valid date.</p>}
+        </div>
+        <div className={timeClasses}>
+          <input
+            type="time"
+            value={timeValue}
+            onChange={timeChangeHandler}
+            onBlur={timeBlurHandler}
+          />
+          {timeHasError && <p className="error-text">Please enter a valid time.</p>}
+        </div>
+        <button type="submit">BOOK</button>
+      </form>
     </>
-  )
-}
+  );
+};
 
 export default CarDetails;

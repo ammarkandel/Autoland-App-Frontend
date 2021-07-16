@@ -1,15 +1,13 @@
-/* eslint-disable */
 import { authActions } from '../slices/AuthSlice';
-import { userActions } from '../slices/UserDataSlice';
 
 const login = (loginData) => async (dispatch) => {
-    dispatch(
-      authActions.showNotification({
-        status: 'pending',
-        title: 'Sending...',
-        message: 'Wait login',
-      }),
-    );
+  dispatch(
+    authActions.showNotification({
+      status: 'pending',
+      title: 'Sending...',
+      message: 'Wait login',
+    }),
+  );
 
   const sendRequest = async () => {
     const response = await fetch(
@@ -24,7 +22,7 @@ const login = (loginData) => async (dispatch) => {
     );
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem("jwt", data.jwt);
+      localStorage.setItem('jwt', data.jwt);
     } else {
       throw new Error('Login failed!');
     }
@@ -45,9 +43,8 @@ const login = (loginData) => async (dispatch) => {
           status: 'hide',
         }),
       );
-    }, 2000)
-    window.location.href= window.location.origin + "/cars";
-
+    }, 2000);
+    window.location.href = `${window.location.origin}/cars`;
   } catch (error) {
     dispatch(
       authActions.showNotification({
@@ -62,7 +59,7 @@ const login = (loginData) => async (dispatch) => {
           status: 'hide',
         }),
       );
-    }, 2000)
+    }, 2000);
   }
 };
 

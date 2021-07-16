@@ -1,20 +1,19 @@
-/* eslint-disable */
 import { authActions } from '../slices/AuthSlice';
 
 const testDrive = (appointmentData) => async (dispatch) => {
-    dispatch(
-      authActions.showNotification({
-        status: 'pending',
-        title: 'Sending...',
-        message: 'Wait Booking test drive',
-      }),
-    );
+  dispatch(
+    authActions.showNotification({
+      status: 'pending',
+      title: 'Sending...',
+      message: 'Wait Booking test drive',
+    }),
+  );
 
   const sendRequest = async () => {
-    let token = "Bearer " + localStorage.getItem("jwt");
+    const token = `Bearer ${localStorage.getItem('jwt')}`;
     const data = `appointment[date]=${appointmentData.date}
                   &appointment[time]=${appointmentData.time}
-                  &appointment[user_id]=${appointmentData.user_id}
+                  &appointment[user_id]=${appointmentData.userId}
                   &appointment[car_id]=${appointmentData.car_id}`;
     const response = await fetch(
       'https://autoland-api.herokuapp.com/appointments.json',
@@ -48,7 +47,7 @@ const testDrive = (appointmentData) => async (dispatch) => {
           status: 'hide',
         }),
       );
-    }, 2000)
+    }, 2000);
   } catch (error) {
     dispatch(
       authActions.showNotification({
@@ -63,7 +62,7 @@ const testDrive = (appointmentData) => async (dispatch) => {
           status: 'hide',
         }),
       );
-    }, 2000)
+    }, 2000);
   }
 };
 

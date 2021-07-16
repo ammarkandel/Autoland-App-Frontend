@@ -1,4 +1,3 @@
-/* eslint-disable */
 import PropTypes from 'prop-types';
 import MainNav from '../containers/MainNav/MainNav';
 import classes from './Layout.module.css';

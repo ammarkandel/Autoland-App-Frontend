@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -11,21 +10,27 @@ const Cars = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCarsData())
-  }, [])
+    dispatch(getCarsData());
+  }, []);
 
   const renderCars = () => {
     if (carsData) {
       return (
         <>
           <div className={classes.cars}>
-              {carsData.map((car) => (
-                <Card key={car.id}>
-                   <h3>Name: {car.name}</h3>
-                   <h3>Category: {car.category}</h3>
-                   <Link className={classes.detail_btn} to={`/cars/:${car.id}`}>Details</Link>
-                </Card>
-              ))}
+            {carsData.map((car) => (
+              <Card key={car.id}>
+                <h3>
+                  Name:
+                  {car.name}
+                </h3>
+                <h3>
+                  Category:
+                  {car.category}
+                </h3>
+                <Link className={classes.detail_btn} to={`/cars/:${car.id}`}>Details</Link>
+              </Card>
+            ))}
           </div>
         </>
       );
@@ -38,7 +43,7 @@ const Cars = () => {
     <>
       {renderCars()}
     </>
-  )
+  );
 };
 
 export default Cars;

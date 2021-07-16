@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useState } from 'react';
 
 const useInput = (validateValue) => {
@@ -27,7 +26,7 @@ const useInput = (validateValue) => {
     hasError,
     valueChangeHandler,
     inputBlurHandler,
-    reset
+    reset,
   };
 };
 

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { authActions } from '../slices/AuthSlice';
 
 const signup = (signupData) => async (dispatch) => {
@@ -45,8 +44,8 @@ const signup = (signupData) => async (dispatch) => {
           status: 'hide',
         }),
       );
-    }, 2000)
-    window.location.href= window.location.origin + "/login";
+    }, 2000);
+    window.location.href = `${window.location.origin}/login`;
   } catch (error) {
     dispatch(
       authActions.showNotification({
@@ -61,7 +60,7 @@ const signup = (signupData) => async (dispatch) => {
           status: 'hide',
         }),
       );
-    }, 2000)
+    }, 2000);
   }
 };
 

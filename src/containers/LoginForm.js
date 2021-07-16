@@ -1,8 +1,5 @@
-/* eslint-disable */
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import useInput from '../hooks/use-input';
-import { authActions } from '../store/slices/AuthSlice';
 import login from '../store/actions/login_action';
 
 const charNumber = (value) => value.length >= 6;
@@ -10,7 +7,6 @@ const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const auth = localStorage.getItem("jwt");
 
   const {
     value: passwordValue,
@@ -36,7 +32,7 @@ const LoginForm = () => {
     formIsValid = true;
   }
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
     if (!formIsValid) {
@@ -57,31 +53,31 @@ const LoginForm = () => {
   const emailClasses = emailHasError ? 'form-control invalid' : 'form-control';
 
   return (
-    <form onSubmit={submitHandler} className='form'>
+    <form onSubmit={submitHandler} className="form">
       <div className={emailClasses}>
-        <label htmlFor='name'>E-Mail Address</label>
+        <label htmlFor="name">E-Mail Address</label>
         <input
-          type='email'
+          type="email"
           value={emailValue}
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
         />
         {emailHasError && <p className="error-text">Please enter a valid email address.</p>}
       </div>
-      <div className='control-group'>
+      <div className="control-group">
         <div className={passwordClasses}>
-          <label htmlFor='name'>Password</label>
+          <label htmlFor="name">Password</label>
           <input
-            type='password'
+            type="password"
             value={passwordValue}
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
           />
           {passwordHasError && <p className="error-text">Please enter a valid password[At least 6 characters]</p>}
         </div>
-        <div className='form-actions'>
-          <button disabled={!formIsValid}>Submit</button>
-          <a href='signup'>Signup if you not have account</a>
+        <div className="form-actions">
+          <button type="submit" disabled={!formIsValid}>Submit</button>
+          <a href="signup">Signup if you not have account</a>
         </div>
       </div>
     </form>

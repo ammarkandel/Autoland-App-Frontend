@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { authActions } from '../slices/AuthSlice';
 import { userActions } from '../slices/UserDataSlice';
 
@@ -16,9 +15,9 @@ const getCarsData = () => async (dispatch) => {
         status: 'hide',
       }),
     );
-  }, 2000)
+  }, 2000);
   const sendRequest = async () => {
-    let token = "Bearer " + localStorage.getItem("jwt");
+    const token = `Bearer ${localStorage.getItem('jwt')}`;
     const response = await fetch(
       'https://autoland-api.herokuapp.com/cars.json',
       {
@@ -54,7 +53,7 @@ const getCarsData = () => async (dispatch) => {
           status: 'hide',
         }),
       );
-    }, 2000)
+    }, 2000);
   }
 };
 
