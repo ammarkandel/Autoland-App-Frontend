@@ -95,6 +95,11 @@ button:disabled:active {
   margin: 3rem;
 }
 
+.form h2 {
+  padding-bottom: 2rem;
+  font-size: 2rem;
+}
+
 .form a {
   color: #97bf1c;
   text-align: center;

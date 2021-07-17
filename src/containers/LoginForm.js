@@ -54,25 +54,32 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={submitHandler} className="form">
+      <h2>Login</h2>
       <div className={emailClasses}>
-        <label htmlFor="name">E-Mail Address</label>
-        <input
-          type="email"
-          value={emailValue}
-          onChange={emailChangeHandler}
-          onBlur={emailBlurHandler}
-        />
+        <label htmlFor="email">
+          E-Mail Address:
+          <input
+            type="email"
+            id="email"
+            value={emailValue}
+            onChange={emailChangeHandler}
+            onBlur={emailBlurHandler}
+          />
+        </label>
         {emailHasError && <p className="error-text">Please enter a valid email address.</p>}
       </div>
       <div className="control-group">
         <div className={passwordClasses}>
-          <label htmlFor="name">Password</label>
-          <input
-            type="password"
-            value={passwordValue}
-            onChange={passwordChangeHandler}
-            onBlur={passwordBlurHandler}
-          />
+          <label htmlFor="password">
+            Password:
+            <input
+              type="password"
+              id="password"
+              value={passwordValue}
+              onChange={passwordChangeHandler}
+              onBlur={passwordBlurHandler}
+            />
+          </label>
           {passwordHasError && <p className="error-text">Please enter a valid password[At least 6 characters]</p>}
         </div>
         <div className="form-actions">

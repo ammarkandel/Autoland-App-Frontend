@@ -1,18 +1,17 @@
-/* eslint-disable */
-
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import getAppointmentsData from '../../store/actions/get_user_appointments';
 import classes from './CarDetails.module.css';
 
 const CarAppointments = (props) => {
-  const { id, userId, updateAppointments } = props;
-  const appointments = useSelector((state) => state.userInfo.appointments);
+  const { id, userId, update } = props;
+  const { appointments } = useSelector((state) => state.userInfo);
   const carAppointments = appointments.filter((appointment) => appointment.car_id == id && appointment.user_id == userId);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAppointmentsData());
-  }, [updateAppointments]);
+  }, [dispatch, update]);
 
   const renderCarAppoinments = () => {
     if (carAppointments.length > 0) {

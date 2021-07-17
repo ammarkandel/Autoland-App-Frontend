@@ -12,8 +12,10 @@ const CarDetails = () => {
   const [updated, setUpdated] = useState(false);
   const dispatch = useDispatch();
   const id = useParams().id.slice(1);
-  const userId = useSelector((state) => state.userInfo.user).sub;
-  const carsData = useSelector((state) => state.userInfo.cars).filter((car) => car.id == id)[0];
+  const userData = useSelector((state) => state.userInfo);
+  const userId = userData.user.sub;
+  const carsData = userData.cars.filter((car) => car.id == id)[0];
+
   useEffect(() => {
     dispatch(getCarsData());
     dispatch(userActions.userData());
@@ -49,7 +51,6 @@ const CarDetails = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
     if (!formIsValid) {
       return;
     }
@@ -62,9 +63,9 @@ const CarDetails = () => {
     };
 
     dispatch(testDrive(testDriveData));
+    setUpdated(!updated);
     resetDate();
     resetTime();
-    setUpdated(!updated);
   };
 
   const timeClasses = timeHasError ? 'form-control invalid' : 'form-control';
@@ -100,7 +101,7 @@ const CarDetails = () => {
   return (
     <>
       <h3>- Tests drive booked -</h3>
-      <CarAppointments id={id} updateAppointments={updated} userId={userId} />
+      <CarAppointments id={id} update={updated} userId={userId} />
       <h3>- Car Details -</h3>
       {renderCarDetails()}
       <form className={classes.appointment} onSubmit={submitHandler}>

@@ -6,12 +6,12 @@ import Card from '../../components/Card/Card';
 import classes from './Cars.module.css';
 
 const Cars = () => {
-  const carsData = useSelector((state) => state.userInfo.cars);
+  const carsData = useSelector((state) => state.userInfo).cars;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCarsData());
-  }, []);
+  }, [dispatch]);
 
   const renderCars = () => {
     if (carsData) {

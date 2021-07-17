@@ -6,8 +6,9 @@ import getAppointmentsData from '../../store/actions/get_user_appointments';
 import classes from './Appointments.module.css';
 
 const Appointments = () => {
-  const userId = useSelector((state) => state.userInfo.user).sub;
-  const appointments = useSelector((state) => state.userInfo.appointments);
+  const userInfo = useSelector((state) => state.userInfo);
+  const userId = userInfo.user.sub;
+  const { appointments } = userInfo;
   const allUserAppointments = appointments.filter((appointment) => appointment.user_id == userId);
   const dispatch = useDispatch();
   useEffect(() => {
