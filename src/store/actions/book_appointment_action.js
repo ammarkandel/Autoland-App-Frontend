@@ -1,69 +1,31 @@
-import { authActions } from '../slices/AuthSlice';
+/* eslint-disable */
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const testDrive = (appointmentData) => async (dispatch) => {
-  dispatch(
-    authActions.showNotification({
-      status: 'pending',
-      title: 'Sending...',
-      message: 'Wait Booking test drive',
+export const addTestDrive = createApi({
+  reducerPath: "testDrive",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://autoland-api.herokuapp.com",
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem('jwt');
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`)
+        headers.set('Content-type', 'application/x-www-form-urlencoded')
+      }
+
+      return headers
+    },
+  }),
+  endpoints: (builder) => ({
+    addTestDrive: builder.mutation({
+      query(body) {
+        return {
+          url: `appointments`,
+          method: 'POST',
+          body,
+        }
+      }
     }),
-  );
+  }),
+});
 
-  const sendRequest = async () => {
-    const token = `Bearer ${localStorage.getItem('jwt')}`;
-    const data = `appointment[date]=${appointmentData.date}
-                  &appointment[time]=${appointmentData.time}
-                  &appointment[user_id]=${appointmentData.userId}
-                  &appointment[car_id]=${appointmentData.car_id}`;
-    const response = await fetch(
-      'https://autoland-api.herokuapp.com/appointments.json',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': token,
-          'Content-type': 'application/x-www-form-urlencoded',
-        },
-        body: data.replace(/\s/g, ''),
-      },
-    );
-
-    if (!response.ok) {
-      throw new Error('Booking is failed!');
-    }
-  };
-
-  try {
-    await sendRequest();
-    dispatch(
-      authActions.showNotification({
-        status: 'success',
-        title: 'Success!',
-        message: 'Test drive is booked',
-      }),
-    );
-    setTimeout(() => {
-      dispatch(
-        authActions.hideNotification({
-          status: 'hide',
-        }),
-      );
-    }, 2000);
-  } catch (error) {
-    dispatch(
-      authActions.showNotification({
-        status: 'error',
-        title: 'Error!',
-        message: 'Booking failed!',
-      }),
-    );
-    setTimeout(() => {
-      dispatch(
-        authActions.hideNotification({
-          status: 'hide',
-        }),
-      );
-    }, 2000);
-  }
-};
-
-export default testDrive;
+export const { useAddTestDriveMutation } = addTestDrive;

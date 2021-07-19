@@ -1,66 +1,30 @@
-import { authActions } from '../slices/AuthSlice';
+/* eslint-disable */
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const login = (loginData) => async (dispatch) => {
-  dispatch(
-    authActions.showNotification({
-      status: 'pending',
-      title: 'Sending...',
-      message: 'Wait login',
-    }),
-  );
+export const addLogin = createApi({
+  reducerPath: "login",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://autoland-api.herokuapp.com",
+    prepareHeaders: (headers) => {
+      headers.set('Content-type', 'application/x-www-form-urlencoded')
 
-  const sendRequest = async () => {
-    const response = await fetch(
-      'https://autoland-api.herokuapp.com/auth/signin.json',
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/x-www-form-urlencoded',
-        },
-        body: `auth[email]=${loginData.email}&auth[password]=${loginData.password}`,
+      return headers
+    },
+  }),
+  endpoints: (builder) => ({
+    addLogin: builder.mutation({
+      query(body) {
+        return {
+          url: `auth/signin`,
+          method: 'POST',
+          body,
+        }
       },
-    );
-    if (response.ok) {
-      const data = await response.json();
-      localStorage.setItem('jwt', data.jwt);
-    } else {
-      throw new Error('Login failed!');
-    }
-  };
+      transformResponse: (response) => {
+        localStorage.setItem('jwt', response.jwt);
+      },
+    }),
+  }),
+});
 
-  try {
-    await sendRequest();
-    dispatch(
-      authActions.showNotification({
-        status: 'success',
-        title: 'Success!',
-        message: 'Sign in successfully!',
-      }),
-    );
-    setTimeout(() => {
-      dispatch(
-        authActions.hideNotification({
-          status: 'hide',
-        }),
-      );
-    }, 2000);
-    window.location.href = `${window.location.origin}/cars`;
-  } catch (error) {
-    dispatch(
-      authActions.showNotification({
-        status: 'error',
-        title: 'Error!',
-        message: 'Sign in failed!',
-      }),
-    );
-    setTimeout(() => {
-      dispatch(
-        authActions.hideNotification({
-          status: 'hide',
-        }),
-      );
-    }, 2000);
-  }
-};
-
-export default login;
+export const { useAddLoginMutation } = addLogin;

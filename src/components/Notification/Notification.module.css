@@ -9,10 +9,10 @@
   color: white;
 }
 
-.notification h2,
 .notification p {
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin: 0;
+  text-decoration: center
 }
 
 .error {

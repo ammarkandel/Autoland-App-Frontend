@@ -1,51 +1,44 @@
+/* eslint-disable */
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import useInput from '../../hooks/use-input';
 import { userActions } from '../../store/slices/UserDataSlice';
 import classes from './CarDetails.module.css';
-import testDrive from '../../store/actions/book_appointment_action';
 import { useGetCarsQuery } from '../../store/actions/get_cars_action';
 import CarAppointments from './CarAppointments';
 import { authActions } from '../../store/slices/AuthSlice';
+import { useAddTestDriveMutation } from '../../store/actions/book_appointment_action';
+import CarInfo from './CarInfo';
 
 const CarDetails = () => {
-  const [updated, setUpdated] = useState(false);
   const { data, isLoading, isError } = useGetCarsQuery();
   const dispatch = useDispatch();
   const id = useParams().id.slice(1);
   const userId = useSelector((state) => state.userInfo).user.sub;
+  const [
+    addTestDrive,
+    { isLoading: isAdding },
+  ] = useAddTestDriveMutation();
 
   useEffect(() => {
     dispatch(userActions.userData());
     if (isLoading) {
       dispatch(
-        authActions.showNotification({
-          status: 'pending',
-          title: 'Loading....',
-          message: 'Loading The Car Data',
-        }),
+        authActions.showNotification({ status: 'pending', message: 'Loading The Car Data.....' }),
       );
       setTimeout(() => {
         dispatch(
-          authActions.hideNotification({
-            status: 'hide',
-          }),
+          authActions.hideNotification({ status: 'hide' }),
         );
       }, 2000);
     } else if (isError) {
       dispatch(
-        authActions.showNotification({
-          status: 'error',
-          title: 'Error!',
-          message: 'Error while get the car data',
-        }),
+        authActions.showNotification({ status: 'error', message: 'Error while get the car data' }),
       );
       setTimeout(() => {
         dispatch(
-          authActions.hideNotification({
-            status: 'hide',
-          }),
+          authActions.hideNotification({ status: 'hide' }),
         );
       }, 2000);
     }
@@ -92,8 +85,12 @@ const CarDetails = () => {
       car_id: id,
     };
 
-    dispatch(testDrive(testDriveData));
-    setUpdated(!updated);
+    const appointmentData = `appointment[date]=${testDriveData.date}
+                  &appointment[time]=${testDriveData.time}
+                  &appointment[user_id]=${testDriveData.userId}
+                  &appointment[car_id]=${testDriveData.car_id}`;
+
+    addTestDrive(appointmentData);
     resetDate();
     resetTime();
   };
@@ -101,40 +98,12 @@ const CarDetails = () => {
   const timeClasses = timeHasError ? 'form-control invalid' : 'form-control';
   const dateClasses = dateHasError ? 'form-control invalid' : 'form-control';
 
-  const renderCarDetails = () => {
-    if (data) {
-      const carsData = data.filter((car) => car.id == id)[0];
-      return (
-        <ul className={classes.details}>
-          <li>
-            Release year:
-            {carsData.release_year}
-          </li>
-          <li>
-            Speed:
-            {carsData.speed}
-          </li>
-          <li>
-            Price:
-            {carsData.price}
-          </li>
-          <li>
-            Color:
-            {carsData.color}
-          </li>
-        </ul>
-      );
-    }
-
-    return null;
-  };
-
   return (
     <>
       <h3>- Tests drive booked -</h3>
-      <CarAppointments id={id} update={updated} userId={userId} />
+      <CarAppointments id={id} userId={userId} />
       <h3>- Car Details -</h3>
-      {renderCarDetails()}
+      <CarInfo data={data} id={id} />
       <form className={classes.appointment} onSubmit={submitHandler}>
         <h3>- Book test drive -</h3>
         <div className={dateClasses}>

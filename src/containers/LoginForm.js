@@ -1,12 +1,18 @@
+/* eslint-disable */
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
-import login from '../store/actions/login_action';
+import { useAddLoginMutation } from '../store/actions/login_action';
+import { authActions } from '../store/slices/AuthSlice';
 
 const charNumber = (value) => value.length >= 6;
 const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const [
+    addLogin,
+    { isLoading: isAdding },
+  ] = useAddLoginMutation();
 
   const {
     value: passwordValue,
@@ -44,7 +50,9 @@ const LoginForm = () => {
       password: passwordValue,
     };
 
-    dispatch(login(loginData));
+    const sendLoginData = `auth[email]=${loginData.email}&auth[password]=${loginData.password}`;
+
+    addLogin(sendLoginData);
     resetPassword();
     resetEmail();
   };

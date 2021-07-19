@@ -2,7 +2,7 @@ import { render, fireEvent, wait } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import store from '../store/index';
 import LoginForm from '../containers/LoginForm';
-import login from '../store/actions/login_action';
+import { addLogin } from '../store/actions/login_action';
 
 jest.mock('../store/actions/login_action');
 
@@ -19,7 +19,7 @@ test('Test login form', async () => {
    fireEvent.change(passwordInput, { 'target': { 'value': '12345678' } });
    fireEvent.change(emailInput, { 'target': { 'value': 'test123@gmail.com' } });
    fireEvent.click(submitBtn);
-   expect(login).toHaveBeenCalledTimes(1);
+   expect(addLogin).toHaveBeenCalledTimes(1);
 })
 
 test('Test form validation if user add invalid inputs', async () => {

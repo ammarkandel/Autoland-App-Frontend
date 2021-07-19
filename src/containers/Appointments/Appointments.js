@@ -16,32 +16,20 @@ const Appointments = () => {
     dispatch(userActions.userData());
     if (isLoading) {
       dispatch(
-        authActions.showNotification({
-          status: 'pending',
-          title: 'Loading....',
-          message: 'Loading Your Appointments',
-        }),
+        authActions.showNotification({ status: 'pending', message: 'Loading Your Appointments....' }),
       );
       setTimeout(() => {
         dispatch(
-          authActions.hideNotification({
-            status: 'hide',
-          }),
+          authActions.hideNotification({ status: 'hide' }),
         );
       }, 2000);
     } else if (isError) {
       dispatch(
-        authActions.showNotification({
-          status: 'error',
-          title: 'Error!',
-          message: 'Error while get appointments',
-        }),
+        authActions.showNotification({ status: 'error', message: 'Error while get appointments' }),
       );
       setTimeout(() => {
         dispatch(
-          authActions.hideNotification({
-            status: 'hide',
-          }),
+          authActions.hideNotification({ status: 'hide' }),
         );
       }, 2000);
     }

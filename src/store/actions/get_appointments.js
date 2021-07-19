@@ -5,7 +5,7 @@ export const getAppointments = createApi({
   reducerPath: "appointments",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://autoland-api.herokuapp.com",
-    prepareHeaders: (headers, { getState }) => {
+    prepareHeaders: (headers) => {
       const token = localStorage.getItem('jwt');
       if (token) {
         headers.set('authorization', `Bearer ${token}`)

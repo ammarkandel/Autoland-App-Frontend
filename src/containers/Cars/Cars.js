@@ -13,11 +13,7 @@ const Cars = () => {
   useEffect(() => {
     if (isLoading) {
       dispatch(
-        authActions.showNotification({
-          status: 'pending',
-          title: 'Loading....',
-          message: 'Loading Your Cars',
-        }),
+        authActions.showNotification({ status: 'pending', message: 'Loading Cars.......' }),
       );
       setTimeout(() => {
         dispatch(
@@ -28,17 +24,11 @@ const Cars = () => {
       }, 2000);
     } else if (isError) {
       dispatch(
-        authActions.showNotification({
-          status: 'error',
-          title: 'Error!',
-          message: 'Error while get cars',
-        }),
+        authActions.showNotification({ status: 'error', message: 'Error while get cars' }),
       );
       setTimeout(() => {
         dispatch(
-          authActions.hideNotification({
-            status: 'hide',
-          }),
+          authActions.hideNotification({ status: 'hide' }),
         );
       }, 2000);
     }

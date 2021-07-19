@@ -7,43 +7,32 @@ import { useGetAppointmentsQuery } from '../../store/actions/get_appointments';
 import { authActions } from '../../store/slices/AuthSlice';
 
 const CarAppointments = (props) => {
-  const { id, userId, update } = props;
+  const { id, userId } = props;
   const { data, isLoading, isError } = useGetAppointmentsQuery();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (isLoading) {
       dispatch(
-        authActions.showNotification({
-          status: 'pending',
-          title: 'Loading....',
-          message: 'Loading Your Appointments',
-        }),
+        authActions.showNotification({ status: 'pending', message: 'Loading Your Appointments....' }),
       );
       setTimeout(() => {
         dispatch(
-          authActions.hideNotification({
-            status: 'hide',
-          }),
+          authActions.hideNotification({ status: 'hide' }),
         );
       }, 2000);
     } else if (isError) {
       dispatch(
-        authActions.showNotification({
-          status: 'error',
-          title: 'Error!',
-          message: 'Error while get appointments',
-        }),
+        authActions.showNotification({ status: 'error', message: 'Error while get appointments' }),
       );
       setTimeout(() => {
         dispatch(
-          authActions.hideNotification({
-            status: 'hide',
-          }),
+          authActions.hideNotification({ status: 'hide' }),
         );
       }, 2000);
     }
-  }, [])
+  }, [dispatch])
+
   const renderCarAppoinments = () => {
     if (data && data.length > 0) {
       const carAppointments = data.filter((appointment) => appointment.car_id == id && appointment.user_id == userId);
@@ -78,8 +67,7 @@ const CarAppointments = (props) => {
 
 CarAppointments.propTypes = {
   id: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
-  update: PropTypes.bool.isRequired,
+  userId: PropTypes.number,
 };
 
 export default CarAppointments;
