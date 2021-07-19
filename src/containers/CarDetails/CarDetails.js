@@ -5,20 +5,50 @@ import useInput from '../../hooks/use-input';
 import { userActions } from '../../store/slices/UserDataSlice';
 import classes from './CarDetails.module.css';
 import testDrive from '../../store/actions/book_appointment_action';
-import getCarsData from '../../store/actions/get_cars_action';
+import { useGetCarsQuery } from '../../store/actions/get_cars_action';
 import CarAppointments from './CarAppointments';
+import { authActions } from '../../store/slices/AuthSlice';
 
 const CarDetails = () => {
   const [updated, setUpdated] = useState(false);
+  const { data, isLoading, isError } = useGetCarsQuery();
   const dispatch = useDispatch();
   const id = useParams().id.slice(1);
-  const userData = useSelector((state) => state.userInfo);
-  const userId = userData.user.sub;
-  const carsData = userData.cars.filter((car) => car.id == id)[0];
+  const userId = useSelector((state) => state.userInfo).user.sub;
 
   useEffect(() => {
-    dispatch(getCarsData());
     dispatch(userActions.userData());
+    if (isLoading) {
+      dispatch(
+        authActions.showNotification({
+          status: 'pending',
+          title: 'Loading....',
+          message: 'Loading The Car Data',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 2000);
+    } else if (isError) {
+      dispatch(
+        authActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: 'Error while get the car data',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 2000);
+    }
   }, []);
 
   const isEmpty = (str) => !str.trim().length;
@@ -72,7 +102,8 @@ const CarDetails = () => {
   const dateClasses = dateHasError ? 'form-control invalid' : 'form-control';
 
   const renderCarDetails = () => {
-    if (carsData) {
+    if (data) {
+      const carsData = data.filter((car) => car.id == id)[0];
       return (
         <ul className={classes.details}>
           <li>

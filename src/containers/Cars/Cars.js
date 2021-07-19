@@ -1,24 +1,55 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import getCarsData from '../../store/actions/get_cars_action';
+import { useGetCarsQuery } from '../../store/actions/get_cars_action';
+import { authActions } from '../../store/slices/AuthSlice';
 import Card from '../../components/Card/Card';
 import classes from './Cars.module.css';
 
 const Cars = () => {
-  const carsData = useSelector((state) => state.userInfo).cars;
   const dispatch = useDispatch();
+  const { data, isLoading, isError } = useGetCarsQuery();
 
   useEffect(() => {
-    dispatch(getCarsData());
+    if (isLoading) {
+      dispatch(
+        authActions.showNotification({
+          status: 'pending',
+          title: 'Loading....',
+          message: 'Loading Your Cars',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 2000);
+    } else if (isError) {
+      dispatch(
+        authActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: 'Error while get cars',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 2000);
+    }
   }, [dispatch]);
 
   const renderCars = () => {
-    if (carsData) {
+    if (data) {
       return (
         <>
           <div className={classes.cars}>
-            {carsData.map((car) => (
+            {data.map((car) => (
               <Card key={car.id}>
                 <h3>
                   Name:

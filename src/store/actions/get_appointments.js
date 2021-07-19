@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const getCars = createApi({
-  reducerPath: "cars",
+export const getAppointments = createApi({
+  reducerPath: "appointments",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://autoland-api.herokuapp.com",
     prepareHeaders: (headers, { getState }) => {
@@ -15,10 +15,10 @@ export const getCars = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getCars: builder.query({
-      query: () => `cars`,
+    getAppointments: builder.query({
+      query: () => `user_appointments`,
     }),
   }),
 });
 
-export const { useGetCarsQuery } = getCars;
+export const { useGetAppointmentsQuery } = getAppointments;

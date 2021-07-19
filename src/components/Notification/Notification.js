@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classes from './Notification.module.css';
 
 const Notification = (props) => {
@@ -16,6 +17,12 @@ const Notification = (props) => {
       <p>{message}</p>
     </div>
   );
+};
+
+Notification.propTypes = {
+  status: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  message: PropTypes.string,
 };
 
 export default Notification;

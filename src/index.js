@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import history from './history';
 import store from './store/index';
 import App from './App';
+import reportWebVitals from './reportWebVitals';
 import './index.css';
 
 ReactDOM.render(
@@ -15,3 +16,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
+
+reportWebVitals();

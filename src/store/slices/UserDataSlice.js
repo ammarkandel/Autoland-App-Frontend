@@ -2,11 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const userDataSlice = createSlice({
   name: 'userDataSlice',
-  initialState: { cars: [], appointments: [], user: [] },
+  initialState: { user: [] },
   reducers: {
-    getCars(state, { payload }) {
-      state.cars = payload;
-    },
     userData(state) {
       const getInfo = (token) => {
         if (!token) { return; }
@@ -16,9 +13,6 @@ const userDataSlice = createSlice({
       };
       const userData = getInfo(localStorage.getItem('jwt'));
       state.user = userData;
-    },
-    getAppointments(state, { payload }) {
-      state.appointments = payload;
     },
   },
 });

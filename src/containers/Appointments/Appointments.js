@@ -1,27 +1,59 @@
+/* eslint-disable */
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../../components/Card/Card';
 import { userActions } from '../../store/slices/UserDataSlice';
-import getAppointmentsData from '../../store/actions/get_user_appointments';
+import { authActions } from '../../store/slices/AuthSlice';
 import classes from './Appointments.module.css';
+import { useGetAppointmentsQuery } from '../../store/actions/get_appointments';
 
 const Appointments = () => {
-  const userInfo = useSelector((state) => state.userInfo);
-  const userId = userInfo.user.sub;
-  const { appointments } = userInfo;
-  const allUserAppointments = appointments.filter((appointment) => appointment.user_id == userId);
+  const userId = useSelector((state) => state.userInfo).user.sub;
   const dispatch = useDispatch();
+  const { data, isLoading, isError } = useGetAppointmentsQuery();
+
   useEffect(() => {
     dispatch(userActions.userData());
-    dispatch(getAppointmentsData());
+    if (isLoading) {
+      dispatch(
+        authActions.showNotification({
+          status: 'pending',
+          title: 'Loading....',
+          message: 'Loading Your Appointments',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 2000);
+    } else if (isError) {
+      dispatch(
+        authActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: 'Error while get appointments',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 2000);
+    }
   }, []);
 
   const renderAppointments = () => {
-    if (allUserAppointments.length > 0) {
+    if (data && data.length > 0) {
+      const allUserAppointments = data.filter((appointment) => appointment.user_id == userId);
       return (
         <>
           <div className={classes.appointments}>
-            {allUserAppointments.map((appointment) => (
+            {data.map((appointment) => (
               <Card key={appointment.id}>
                 <h3>
                   Date:

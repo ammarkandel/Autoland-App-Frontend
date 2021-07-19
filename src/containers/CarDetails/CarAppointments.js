@@ -1,20 +1,52 @@
+/* eslint-disable */
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import getAppointmentsData from '../../store/actions/get_user_appointments';
 import classes from './CarDetails.module.css';
+import { useGetAppointmentsQuery } from '../../store/actions/get_appointments';
+import { authActions } from '../../store/slices/AuthSlice';
 
 const CarAppointments = (props) => {
   const { id, userId, update } = props;
-  const { appointments } = useSelector((state) => state.userInfo);
-  const carAppointments = appointments.filter((appointment) => appointment.car_id == id && appointment.user_id == userId);
+  const { data, isLoading, isError } = useGetAppointmentsQuery();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAppointmentsData());
-  }, [dispatch, update]);
-
+    if (isLoading) {
+      dispatch(
+        authActions.showNotification({
+          status: 'pending',
+          title: 'Loading....',
+          message: 'Loading Your Appointments',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 2000);
+    } else if (isError) {
+      dispatch(
+        authActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: 'Error while get appointments',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 2000);
+    }
+  }, [])
   const renderCarAppoinments = () => {
-    if (carAppointments.length > 0) {
+    if (data && data.length > 0) {
+      const carAppointments = data.filter((appointment) => appointment.car_id == id && appointment.user_id == userId);
       return (
         <ul className={classes.details}>
           {carAppointments.map((item) => (
@@ -42,6 +74,12 @@ const CarAppointments = (props) => {
       {renderCarAppoinments()}
     </>
   );
+};
+
+CarAppointments.propTypes = {
+  id: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  update: PropTypes.bool.isRequired,
 };
 
 export default CarAppointments;
