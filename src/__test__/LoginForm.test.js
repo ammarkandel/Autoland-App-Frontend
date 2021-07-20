@@ -2,9 +2,9 @@ import { render, fireEvent, wait } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import store from '../store/index';
 import LoginForm from '../containers/LoginForm';
-import { addLogin } from '../store/actions/login_action';
+import { addLogin } from '../store/services/login_slice';
 
-jest.mock('../store/actions/login_action');
+jest.mock('../store/services/login_slice');
 
 test('Test login form', async () => {
    const { getByText, getByLabelText, debug } = render(

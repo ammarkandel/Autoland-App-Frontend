@@ -1,16 +1,15 @@
-/* eslint-disable */
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../../components/Card/Card';
 import { userActions } from '../../store/slices/UserDataSlice';
 import { authActions } from '../../store/slices/AuthSlice';
 import classes from './Appointments.module.css';
-import { useGetAppointmentsQuery } from '../../store/actions/get_appointments';
+import { useGetAppointmentsQuery } from '../../store/services/get_appointments_slice';
 
 const Appointments = () => {
   const userId = useSelector((state) => state.userInfo).user.sub;
   const dispatch = useDispatch();
-  const { data, isLoading, isError } = useGetAppointmentsQuery();
+  const { data = [], isLoading, isError } = useGetAppointmentsQuery();
 
   useEffect(() => {
     dispatch(userActions.userData());
@@ -41,7 +40,7 @@ const Appointments = () => {
       return (
         <>
           <div className={classes.appointments}>
-            {data.map((appointment) => (
+            {allUserAppointments.map((appointment) => (
               <Card key={appointment.id}>
                 <h3>
                   Date:

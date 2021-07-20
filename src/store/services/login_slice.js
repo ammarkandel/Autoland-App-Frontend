@@ -11,6 +11,7 @@ export const addLogin = createApi({
       return headers
     },
   }),
+  tagTypes: ['Login'],
   endpoints: (builder) => ({
     addLogin: builder.mutation({
       query(body) {

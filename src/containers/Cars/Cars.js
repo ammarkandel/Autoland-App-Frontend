@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useGetCarsQuery } from '../../store/actions/get_cars_action';
+import { useGetCarsQuery } from '../../store/services/get_cars_slice';
 import { authActions } from '../../store/slices/AuthSlice';
 import Card from '../../components/Card/Card';
 import classes from './Cars.module.css';

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import classes from '../CarDetails.module.css';
-import { useGetAppointmentsQuery } from '../../../store/actions/get_appointments';
+import { useGetAppointmentsQuery } from '../../../store/services/get_appointments_slice';
 
 const CarAppointments = (props) => {
   const { id, userId } = props;

@@ -15,6 +15,7 @@ export const addTestDrive = createApi({
       return headers
     },
   }),
+  tagTypes: ['Appointment'],
   endpoints: (builder) => ({
     addTestDrive: builder.mutation({
       query(body) {

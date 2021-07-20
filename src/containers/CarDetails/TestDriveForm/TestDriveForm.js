@@ -1,5 +1,5 @@
 import useInput from '../../../hooks/use-input';
-import { useAddTestDriveMutation } from '../../../store/actions/book_appointment_action';
+import { useAddTestDriveMutation } from '../../../store/services/book_appointment_slice';
 
 const TestDriveForm = ({ id, userId }) => {
   const isEmpty = (str) => !str.trim().length;

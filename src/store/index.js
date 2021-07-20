@@ -2,11 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import authSlice from './slices/AuthSlice';
 import userDataSlice from './slices/UserDataSlice';
-import { getAppointments } from './actions/get_appointments';
-import { getCars } from './actions/get_cars_action';
-import { addTestDrive } from './actions/book_appointment_action';
-import { addLogin } from './actions/login_action';
-import { addSignup } from './actions/signup_action';
+import { getAppointments } from './services/get_appointments_slice';
+import { getCars } from './services/get_cars_slice';
+import { addTestDrive } from './services/book_appointment_slice';
+import { addLogin } from './services/login_slice';
+import { addSignup } from './services/signup_slice';
 
 const addMiddlewares = [getAppointments.middleware,
   getCars.middleware,

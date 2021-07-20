@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
-import { useAddLoginMutation } from '../store/actions/login_action';
+import { useAddLoginMutation } from '../store/services/login_slice';
 import { authActions } from '../store/slices/AuthSlice';
 
 const charNumber = (value) => value.length >= 6;

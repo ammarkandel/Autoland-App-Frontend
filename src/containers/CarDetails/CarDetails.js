@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/slices/UserDataSlice';
-import { useGetCarsQuery } from '../../store/actions/get_cars_action';
+import { useGetCarsQuery } from '../../store/services/get_cars_slice';
 import { authActions } from '../../store/slices/AuthSlice';
 import CarInfo from './CarInfo/CarInfo';
 import CarAppointments from './CarAppointments/CarAppointments';

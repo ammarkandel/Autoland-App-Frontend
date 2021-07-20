@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
-import { useAddSignupMutation } from '../store/actions/signup_action';
+import { useAddSignupMutation } from '../store/services/signup_slice';
 
 const isPassword = (value) => value.length >= 6;
 const isUsername = (value) => value.length > 3;
