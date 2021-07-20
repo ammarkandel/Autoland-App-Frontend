@@ -1,10 +1,9 @@
-/* eslint-disable */
 import classes from './CarInfo.module.css';
 
 const CarInfo = ({ data, id }) => {
   let carsData = [];
   if (data && data.length > 0) {
-    carsData = data.filter((car) => car.id == id)[0];
+    [carsData] = data.filter((car) => car.id == id);
   }
   return (
     <ul className={classes.details}>
