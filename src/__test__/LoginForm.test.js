@@ -8,7 +8,7 @@ test('Test form validation if user add invalid inputs', async () => {
   <Provider store={store}>
     <LoginForm />
   </Provider>
-);
+  );
   const passwordInput = getByLabelText(/Password:/i);
   const emailInput = getByLabelText(/E-Mail/i);
   const submitBtn = getByText(/Submit/i);
