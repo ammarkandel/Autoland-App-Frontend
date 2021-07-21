@@ -8,14 +8,12 @@ import CarInfo from './CarInfo/CarInfo';
 import CarAppointments from './CarAppointments/CarAppointments';
 import TestDriveForm from './TestDriveForm/TestDriveForm';
 
-const CarDetails = () => {
+const CarDetails = ({ userId }) => {
   const { data: carData, isLoading, isError } = useGetCarsQuery();
   const dispatch = useDispatch();
   const id = useParams().id.slice(1);
-  const userId = useSelector((state) => state.userInfo).user.sub;
 
   useEffect(() => {
-    dispatch(userActions.userData());
     if (isLoading) {
       dispatch(
         authActions.showNotification({ status: 'pending', message: 'Loading The Car Details.....' }),

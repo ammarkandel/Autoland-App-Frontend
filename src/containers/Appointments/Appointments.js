@@ -6,13 +6,11 @@ import { authActions } from '../../store/slices/AuthSlice';
 import classes from './Appointments.module.css';
 import { useGetAppointmentsQuery } from '../../store/services/get_appointments_slice';
 
-const Appointments = () => {
-  const userId = useSelector((state) => state.userInfo).user.sub;
+const Appointments = ({ userId }) => {
   const dispatch = useDispatch();
   const { data = [], isLoading, isError } = useGetAppointmentsQuery();
 
   useEffect(() => {
-    dispatch(userActions.userData());
     if (isLoading) {
       dispatch(
         authActions.showNotification({ status: 'pending', message: 'Loading Your Appointments....' }),
