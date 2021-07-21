@@ -1,5 +1,6 @@
+/* eslint-disable */
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Notification from './components/Notification/Notification';
 import Cars from './containers/Cars/Cars';
@@ -13,12 +14,8 @@ import SecureRoute from './containers/SecureRoute';
 
 function App() {
   const notification = useSelector((state) => state.authInfo.notification);
-  const userId = useSelector((state) => state.userInfo).user.sub;
   const auth = localStorage.getItem('jwt');
-
-  useEffect(() => {
-    dispatch(userActions.userData());
-  })
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -40,12 +37,8 @@ function App() {
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={SignupForm} />
           <SecureRoute exact path="/cars" component={Cars} />
-          <SecureRoute exact path="/user_appointments" render={(props) => {
-            return <Appointments userId={userId} />
-          }} />
-          <SecureRoute exact path="/cars/:id" render={(props) => {
-            return <CarDetails userId={userId} />
-          }}/>
+          <SecureRoute exact path="/user_appointments" component={Appointments} />
+          <SecureRoute exact path="/cars/:id" component={CarDetails} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Layout>

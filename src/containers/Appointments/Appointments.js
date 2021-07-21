@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Card from '../../components/Card/Card';
-import { userActions } from '../../store/slices/UserDataSlice';
 import { authActions } from '../../store/slices/AuthSlice';
 import classes from './Appointments.module.css';
 import { useGetAppointmentsQuery } from '../../store/services/get_appointments_slice';
