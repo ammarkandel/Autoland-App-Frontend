@@ -1,14 +1,13 @@
-/* eslint-disable */
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const addLogin = createApi({
-  reducerPath: "login",
+  reducerPath: 'login',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://autoland-api.herokuapp.com",
+    baseUrl: 'https://autoland-api.herokuapp.com',
     prepareHeaders: (headers) => {
-      headers.set('Content-type', 'application/x-www-form-urlencoded')
+      headers.set('Content-type', 'application/x-www-form-urlencoded');
 
-      return headers
+      return headers;
     },
   }),
   tagTypes: ['Login'],
@@ -16,10 +15,10 @@ export const addLogin = createApi({
     addLogin: builder.mutation({
       query(body) {
         return {
-          url: `auth/signin`,
+          url: 'auth/signin',
           method: 'POST',
           body,
-        }
+        };
       },
       transformResponse: (response) => {
         localStorage.setItem('jwt', response.jwt);

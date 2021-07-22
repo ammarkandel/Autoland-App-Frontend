@@ -12,7 +12,7 @@
 .notification p {
   font-size: 1.3rem;
   margin: 0;
-  text-decoration: center
+  text-align: center;
 }
 
 .error {

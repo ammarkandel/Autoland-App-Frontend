@@ -1,24 +1,23 @@
-/* eslint-disable */
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const addSignup = createApi({
-  reducerPath: "signup",
+  reducerPath: 'signup',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://autoland-api.herokuapp.com",
+    baseUrl: 'https://autoland-api.herokuapp.com',
     prepareHeaders: (headers) => {
-      headers.set('Content-type', 'application/x-www-form-urlencoded')
+      headers.set('Content-type', 'application/x-www-form-urlencoded');
 
-      return headers
+      return headers;
     },
   }),
   endpoints: (builder) => ({
     addSignup: builder.mutation({
       query(body) {
         return {
-          url: `auth/signup`,
+          url: 'auth/signup',
           method: 'POST',
           body,
-        }
+        };
       },
     }),
   }),

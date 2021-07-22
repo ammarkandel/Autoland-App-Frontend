@@ -63,11 +63,11 @@ const TestDriveForm = ({ id, userId }) => {
     <form className="appointment" onSubmit={submitHandler}>
       <h3>- Book test drive -</h3>
       <div className={dateClasses}>
-        <label htmlFor='date'>
+        <label htmlFor="date">
           Date:
           <input
             type="date"
-            id='date'
+            id="date"
             value={dateValue}
             onChange={dateChangeHandler}
             onBlur={dateBlurHandler}
@@ -76,11 +76,11 @@ const TestDriveForm = ({ id, userId }) => {
         {dateHasError && <p className="error-text">Please enter a valid date.</p>}
       </div>
       <div className={timeClasses}>
-        <label htmlFor='time'>
+        <label htmlFor="time">
           Time:
           <input
             type="time"
-            id='time'
+            id="time"
             value={timeValue}
             onChange={timeChangeHandler}
             onBlur={timeBlurHandler}
