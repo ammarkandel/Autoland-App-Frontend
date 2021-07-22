@@ -1,38 +1,10 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetCarsQuery } from '../../store/services/get_cars_slice';
-import { authActions } from '../../store/slices/AuthSlice';
 import Card from '../../components/Card/Card';
 import classes from './Cars.module.css';
 
 const Cars = () => {
-  const dispatch = useDispatch();
   const { data, isLoading, isError } = useGetCarsQuery();
-
-  useEffect(() => {
-    if (isLoading) {
-      dispatch(
-        authActions.showNotification({ status: 'pending', message: 'Loading Cars.......' }),
-      );
-      setTimeout(() => {
-        dispatch(
-          authActions.hideNotification({
-            status: 'hide',
-          }),
-        );
-      }, 2000);
-    } else if (isError) {
-      dispatch(
-        authActions.showNotification({ status: 'error', message: 'Error while get cars' }),
-      );
-      setTimeout(() => {
-        dispatch(
-          authActions.hideNotification({ status: 'hide' }),
-        );
-      }, 2000);
-    }
-  }, [dispatch]);
 
   const renderCars = () => {
     if (data) {
@@ -57,7 +29,12 @@ const Cars = () => {
       );
     }
 
-    return null;
+    return (
+      <>
+        {isLoading && <h2>Loading Cars............</h2>}
+        {isError && <h2>Something went wrong while fetching cars data</h2>}
+      </>
+    );
   };
 
   return (

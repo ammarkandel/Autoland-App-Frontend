@@ -1,9 +1,10 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import classes from '../CarDetails.module.css';
 import { useGetAppointmentsQuery } from '../../../store/services/get_appointments_slice';
 
 const CarAppointments = ({ id, userId }) => {
-  const { data: appointmentInfo } = useGetAppointmentsQuery();
+  const { data: appointmentInfo, isLoading } = useGetAppointmentsQuery();
 
   const renderCarAppoinments = () => {
     if (appointmentInfo && appointmentInfo.length > 0) {
@@ -25,8 +26,11 @@ const CarAppointments = ({ id, userId }) => {
         </ul>
       );
     }
+
     return (
-      <h2>No Booked test drive yet</h2>
+      <>
+        {isLoading && <h2>Loading Car Appointments............</h2>}
+      </>
     );
   };
 

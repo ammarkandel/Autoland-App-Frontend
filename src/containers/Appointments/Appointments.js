@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
-import { authActions } from '../../store/slices/AuthSlice';
 import classes from './Appointments.module.css';
 import { useGetAppointmentsQuery } from '../../store/services/get_appointments_slice';
 import { userActions } from '../../store/slices/UserDataSlice';
@@ -12,28 +11,6 @@ const Appointments = () => {
   const userId = useSelector((state) => state.userInfo).user.sub;
   useEffect(() => {
     dispatch(userActions.userData());
-  }, []);
-
-  useEffect(() => {
-    if (isLoading) {
-      dispatch(
-        authActions.showNotification({ status: 'pending', message: 'Loading Your Appointments....' }),
-      );
-      setTimeout(() => {
-        dispatch(
-          authActions.hideNotification({ status: 'hide' }),
-        );
-      }, 2000);
-    } else if (isError) {
-      dispatch(
-        authActions.showNotification({ status: 'error', message: 'Error while get appointments' }),
-      );
-      setTimeout(() => {
-        dispatch(
-          authActions.hideNotification({ status: 'hide' }),
-        );
-      }, 2000);
-    }
   }, []);
 
   const renderAppointments = () => {
@@ -60,7 +37,10 @@ const Appointments = () => {
     }
 
     return (
-      <h2>Currently you don t have any appointments yet </h2>
+      <>
+        {isLoading && <h2>Loading Appointments............</h2>}
+        {isError && <h2>Something went wrong while fetching appointments data</h2>}
+      </>
     );
   };
 
