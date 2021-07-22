@@ -5,9 +5,9 @@ import SignupForm from '../containers/SignupForm';
 
 test('Test form validation if user add invalid inputs', async () => {
   const { getByLabelText, getByText } = render(
-  <Provider store={store}>
-    <SignupForm />
-  </Provider>
+    <Provider store={store}>
+      <SignupForm />
+    </Provider>
   );
 
   const passwordInput = getByLabelText(/Password:/i);
@@ -18,13 +18,13 @@ test('Test form validation if user add invalid inputs', async () => {
   fireEvent.change(emailInput, { 'target': { 'value': 'test123gmailcom' } });
   fireEvent.click(submitBtn);
   expect(submitBtn).toHaveAttribute('disabled');
-})
+});
 
 test('Test form validation if username is empty', async () => {
   const { getByLabelText, getByText } = render(
-  <Provider store={store}>
-    <SignupForm />
-  </Provider>,
+    <Provider store={store}>
+      <SignupForm />
+    </Provider>,
   );
 
   const usernameInput = getByLabelText(/Username:/i);
@@ -37,13 +37,13 @@ test('Test form validation if username is empty', async () => {
   fireEvent.change(emailInput, { 'target': { 'value': 'test123@gmail.com' } });
   fireEvent.click(submitBtn);
   expect(submitBtn).toHaveAttribute('disabled');
-})
+});
 
 test('Test form validation if user add valid inputs', async () => {
   const { getByLabelText, getByText } = render(
-  <Provider store={store}>
-    <SignupForm />
-  </Provider>,
+    <Provider store={store}>
+      <SignupForm />
+    </Provider>,
   );
   const usernameInput = getByLabelText(/Username:/i);
   const passwordInput = getByLabelText(/Password:/i);
@@ -55,4 +55,4 @@ test('Test form validation if user add valid inputs', async () => {
   fireEvent.change(emailInput, { 'target': { 'value': 'test123@gmail.com' } });
   fireEvent.click(submitBtn);
   expect(submitBtn).not.toHaveAttribute('disabled=""');
-})
+});
