@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
 import classes from './Appointments.module.css';
-import { useGetAppointmentsQuery } from '../../store/services/get_appointments_slice';
+import { useGetAppointmentsQuery } from '../../store/services/appointment_slice';
 import { userActions } from '../../store/slices/UserDataSlice';
 
 const Appointments = () => {

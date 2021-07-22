@@ -1,7 +1,6 @@
-/* eslint-disable */
 import PropTypes from 'prop-types';
 import classes from '../CarDetails.module.css';
-import { useGetAppointmentsQuery } from '../../../store/services/get_appointments_slice';
+import { useGetAppointmentsQuery } from '../../../store/services/appointment_slice';
 
 const CarAppointments = ({ id, userId }) => {
   const { data: appointmentInfo, isLoading } = useGetAppointmentsQuery();
@@ -26,7 +25,6 @@ const CarAppointments = ({ id, userId }) => {
         </ul>
       );
     }
-
     return (
       <>
         {isLoading && <h2>Loading Car Appointments............</h2>}

@@ -1,5 +1,6 @@
+/* eslint-disable */
 import useInput from '../../../hooks/use-input';
-import { useAddTestDriveMutation } from '../../../store/services/book_appointment_slice';
+import { useAddTestDriveMutation } from '../../../store/services/appointment_slice';
 
 const TestDriveForm = ({ id, userId }) => {
   const isEmpty = (str) => !str.trim().length;
@@ -7,6 +8,7 @@ const TestDriveForm = ({ id, userId }) => {
   const isValidTime = (value) => !isEmpty(value);
   const [
     addTestDrive,
+    {isLoading, isSuccess, isError}
   ] = useAddTestDriveMutation();
 
   const {
