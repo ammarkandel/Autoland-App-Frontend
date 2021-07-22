@@ -10,11 +10,12 @@ export const addSignup = createApi({
       return headers;
     },
   }),
+  tagTypes: ['Signup'],
   endpoints: (builder) => ({
     addSignup: builder.mutation({
       query(body) {
         return {
-          url: 'auth/signup',
+          url: 'auth/signup.json',
           method: 'POST',
           body,
         };

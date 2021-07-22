@@ -2,6 +2,7 @@
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
 import { useAddSignupMutation } from '../store/services/signup_slice';
+import { authActions } from '../store/slices/AuthSlice';
 
 const isPassword = (value) => value.length >= 6;
 const isUsername = (value) => value.length > 3;
@@ -65,7 +66,18 @@ const SignupForm = () => {
                  &user[password]=${signupData.password}
                  &user[password_confirmation]=${signupData.password}`;
 
-    addSignup(sendSignupData);
+    dispatch(
+      authActions.showNotification({ status: 'pending', message: 'Signup....' }),
+    );
+    addSignup(sendSignupData.replace(/\s/g, ''));
+    dispatch(
+      authActions.showNotification({ status: 'success', message: 'Signup successfuly' }),
+    );
+    setTimeout(() => {
+      dispatch(
+        authActions.hideNotification({ status: 'hide' }),
+      );
+    }, 2000);
 
     resetPassword();
     resetEmail();

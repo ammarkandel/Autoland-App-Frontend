@@ -37,7 +37,7 @@ function App() {
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={SignupForm} />
           <SecureRoute exact path="/cars" component={Cars} />
-          <SecureRoute exact path="/user_appointments" component={Appointments} />
+          <SecureRoute exact path="/user_appointments"  component={Appointments} />
           <SecureRoute exact path="/cars/:id" component={CarDetails} />
           <Route path="*" component={NotFound} />
         </Switch>

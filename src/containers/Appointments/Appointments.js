@@ -1,13 +1,18 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
 import { authActions } from '../../store/slices/AuthSlice';
 import classes from './Appointments.module.css';
 import { useGetAppointmentsQuery } from '../../store/services/get_appointments_slice';
+import { userActions } from '../../store/slices/UserDataSlice';
 
-const Appointments = ({ userId }) => {
+const Appointments = () => {
   const dispatch = useDispatch();
   const { data = [], isLoading, isError } = useGetAppointmentsQuery();
+  const userId = useSelector((state) => state.userInfo).user.sub;
+  useEffect(() => {
+    dispatch(userActions.userData());
+  }, []);
 
   useEffect(() => {
     if (isLoading) {

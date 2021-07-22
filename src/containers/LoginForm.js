@@ -52,7 +52,18 @@ const LoginForm = () => {
 
     const sendLoginData = `auth[email]=${loginData.email}&auth[password]=${loginData.password}`;
 
+    dispatch(
+      authActions.showNotification({ status: 'pending', message: 'Login....' }),
+    );
     addLogin(sendLoginData);
+    dispatch(
+      authActions.showNotification({ status: 'success', message: 'Login successfuly' }),
+    );
+    setTimeout(() => {
+      dispatch(
+        authActions.hideNotification({ status: 'hide' }),
+      );
+    }, 2000);
     resetPassword();
     resetEmail();
   };
