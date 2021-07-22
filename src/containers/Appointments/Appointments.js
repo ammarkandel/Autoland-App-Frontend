@@ -19,6 +19,7 @@ const Appointments = () => {
       return (
         <>
           <div className={classes.appointments}>
+            <h2 className={classes.title}>All Appointments You Booked</h2>
             {allUserAppointments.map((appointment) => (
               <Card key={appointment.id}>
                 <h3>
