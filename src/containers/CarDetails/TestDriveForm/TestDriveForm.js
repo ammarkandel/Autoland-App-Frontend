@@ -53,7 +53,9 @@ const TestDriveForm = ({ id, userId }) => {
                   &appointment[user_id]=${testDriveData.userId}
                   &appointment[car_id]=${testDriveData.car_id}`;
 
-    addTestDrive(appointmentData);
+    addTestDrive(appointmentData).then(() => {
+      window.location.href = `${window.location.origin}/user_appointments`;
+    })
     resetDate();
     resetTime();
   };
