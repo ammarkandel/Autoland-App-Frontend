@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import classes from '../CarDetails.module.css';
 import { useGetAppointmentsQuery } from '../../../store/services/get_appointments_slice';
 
-const CarAppointments = (props) => {
-  const { id, userId } = props;
+const CarAppointments = ({ id, userId }) => {
   const { data: appointmentInfo } = useGetAppointmentsQuery();
 
   const renderCarAppoinments = () => {
