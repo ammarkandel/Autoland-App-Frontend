@@ -1,24 +1,17 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import getCarsData from '../../store/actions/get_cars_action';
+import { useGetCarsQuery } from '../../store/services/get_cars_slice';
 import Card from '../../components/Card/Card';
 import classes from './Cars.module.css';
 
 const Cars = () => {
-  const carsData = useSelector((state) => state.userInfo.cars);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCarsData());
-  }, []);
+  const { data, isLoading, isError } = useGetCarsQuery();
 
   const renderCars = () => {
-    if (carsData) {
+    if (data) {
       return (
         <>
           <div className={classes.cars}>
-            {carsData.map((car) => (
+            {data.map((car) => (
               <Card key={car.id}>
                 <h3>
                   Name:
@@ -36,7 +29,12 @@ const Cars = () => {
       );
     }
 
-    return null;
+    return (
+      <>
+        {isLoading && <h2>Loading Cars............</h2>}
+        {isError && <h2>Something went wrong while fetching cars data</h2>}
+      </>
+    );
   };
 
   return (

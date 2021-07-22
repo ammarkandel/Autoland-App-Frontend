@@ -7,7 +7,6 @@ const authSlice = createSlice({
     showNotification(state, { payload }) {
       state.notification = {
         status: payload.status,
-        title: payload.title,
         message: payload.message,
       };
     },

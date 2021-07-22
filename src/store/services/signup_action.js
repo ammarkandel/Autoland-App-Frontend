@@ -1,30 +1,30 @@
 import { authActions } from '../slices/AuthSlice';
 
-const login = (loginData) => async (dispatch) => {
+const signup = (signupData) => async (dispatch) => {
   dispatch(
     authActions.showNotification({
       status: 'pending',
-      title: 'Sending...',
-      message: 'Wait login',
+      message: 'Wait signup',
     }),
   );
 
   const sendRequest = async () => {
+    const data = `user[username]=${signupData.username}&user[email]=${signupData.email}
+                 &user[password]=${signupData.password}
+                 &user[password_confirmation]=${signupData.password}`;
     const response = await fetch(
-      'https://autoland-api.herokuapp.com/auth/signin.json',
+      'https://autoland-api.herokuapp.com/auth/signup.json',
       {
         method: 'POST',
         headers: {
           'Content-type': 'application/x-www-form-urlencoded',
         },
-        body: `auth[email]=${loginData.email}&auth[password]=${loginData.password}`,
+        body: data.replace(/\s/g, ''),
       },
     );
-    if (response.ok) {
-      const data = await response.json();
-      localStorage.setItem('jwt', data.jwt);
-    } else {
-      throw new Error('Login failed!');
+
+    if (!response.ok) {
+      throw new Error('Signup failed!');
     }
   };
 
@@ -33,8 +33,7 @@ const login = (loginData) => async (dispatch) => {
     dispatch(
       authActions.showNotification({
         status: 'success',
-        title: 'Success!',
-        message: 'Sign in successfully!',
+        message: 'Sign up successfully!',
       }),
     );
     setTimeout(() => {
@@ -44,13 +43,12 @@ const login = (loginData) => async (dispatch) => {
         }),
       );
     }, 2000);
-    window.location.href = `${window.location.origin}/cars`;
+    window.location.href = `${window.location.origin}/login`;
   } catch (error) {
     dispatch(
       authActions.showNotification({
         status: 'error',
-        title: 'Error!',
-        message: 'Sign in failed!',
+        message: 'Sign up failed!',
       }),
     );
     setTimeout(() => {
@@ -63,4 +61,4 @@ const login = (loginData) => async (dispatch) => {
   }
 };
 
-export default login;
+export default signup;

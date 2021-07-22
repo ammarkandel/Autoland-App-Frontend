@@ -27,7 +27,8 @@
     "eqeqeq": "off",
     "max-len": [2, 140, 4],
     "no-param-reassign": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "react/require-default-props": "off"
   },
   "ignorePatterns": [
     "dist/",

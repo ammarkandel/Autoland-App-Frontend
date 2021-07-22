@@ -1,22 +1,21 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
-import { userActions } from '../../store/slices/UserDataSlice';
-import getAppointmentsData from '../../store/actions/get_user_appointments';
 import classes from './Appointments.module.css';
+import { useGetAppointmentsQuery } from '../../store/services/get_appointments_slice';
+import { userActions } from '../../store/slices/UserDataSlice';
 
 const Appointments = () => {
-  const userId = useSelector((state) => state.userInfo.user).sub;
-  const appointments = useSelector((state) => state.userInfo.appointments);
-  const allUserAppointments = appointments.filter((appointment) => appointment.user_id == userId);
   const dispatch = useDispatch();
+  const { data = [], isLoading, isError } = useGetAppointmentsQuery();
+  const userId = useSelector((state) => state.userInfo).user.sub;
   useEffect(() => {
     dispatch(userActions.userData());
-    dispatch(getAppointmentsData());
   }, []);
 
   const renderAppointments = () => {
-    if (allUserAppointments.length > 0) {
+    if (data && data.length > 0) {
+      const allUserAppointments = data.filter((appointment) => appointment.user_id == userId);
       return (
         <>
           <div className={classes.appointments}>
@@ -38,7 +37,10 @@ const Appointments = () => {
     }
 
     return (
-      <h2>Currently you don t have any appointments yet </h2>
+      <>
+        {isLoading && <h2>Loading Appointments............</h2>}
+        {isError && <h2>Something went wrong while fetching appointments data</h2>}
+      </>
     );
   };
 
