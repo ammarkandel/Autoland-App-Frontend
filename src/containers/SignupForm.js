@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
-import { useAddSignupMutation } from '../store/services/signup_slice';
+import signup from '../store/services/signup_action';
 import { authActions } from '../store/slices/AuthSlice';
 
 const isPassword = (value) => value.length >= 6;
@@ -10,10 +10,6 @@ const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^
 
 const SignupForm = () => {
   const dispatch = useDispatch();
-  const [
-    addSignup,
-    { isLoading: isAdding },
-  ] = useAddSignupMutation();
 
   const {
     value: usernameValue,
@@ -62,23 +58,7 @@ const SignupForm = () => {
       password_confirmation: passwordValue,
     };
 
-    const sendSignupData = `user[username]=${signupData.username}&user[email]=${signupData.email}
-                 &user[password]=${signupData.password}
-                 &user[password_confirmation]=${signupData.password}`;
-
-    dispatch(
-      authActions.showNotification({ status: 'pending', message: 'Signup....' }),
-    );
-    addSignup(sendSignupData.replace(/\s/g, ''));
-    dispatch(
-      authActions.showNotification({ status: 'success', message: 'Signup successfuly' }),
-    );
-    setTimeout(() => {
-      dispatch(
-        authActions.hideNotification({ status: 'hide' }),
-      );
-    }, 2000);
-
+    dispatch(signup(signupData));
     resetPassword();
     resetEmail();
     resetUsername();

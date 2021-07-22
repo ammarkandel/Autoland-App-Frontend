@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
-import { useAddLoginMutation } from '../store/services/login_slice';
+import login from '../store/services/login_action';
 import { authActions } from '../store/slices/AuthSlice';
 
 const charNumber = (value) => value.length >= 6;
@@ -9,10 +9,6 @@ const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const [
-    addLogin,
-    { isLoading: isAdding },
-  ] = useAddLoginMutation();
 
   const {
     value: passwordValue,
@@ -50,20 +46,7 @@ const LoginForm = () => {
       password: passwordValue,
     };
 
-    const sendLoginData = `auth[email]=${loginData.email}&auth[password]=${loginData.password}`;
-
-    dispatch(
-      authActions.showNotification({ status: 'pending', message: 'Login....' }),
-    );
-    addLogin(sendLoginData);
-    dispatch(
-      authActions.showNotification({ status: 'success', message: 'Login successfuly' }),
-    );
-    setTimeout(() => {
-      dispatch(
-        authActions.hideNotification({ status: 'hide' }),
-      );
-    }, 2000);
+    dispatch(login(loginData));
     resetPassword();
     resetEmail();
   };
