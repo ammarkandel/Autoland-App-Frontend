@@ -60,7 +60,7 @@ a {
   flex: 1;
 }
 
-button {
+button, .details {
   font: inherit;
   background-color: #97bf1c;
   color: white;
