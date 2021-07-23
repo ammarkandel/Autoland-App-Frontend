@@ -1,4 +1,4 @@
-import classes from './CarInfo.module.css';
+import classes from '../CarDetails.module.css';
 
 const CarInfo = ({ data, id }) => {
   let carsData = [];
@@ -8,20 +8,28 @@ const CarInfo = ({ data, id }) => {
   return (
     <ul className={classes.details}>
       <li>
-        Release year:
-        {carsData.release_year}
+        <p>
+          <span>Release year :: </span>
+          {carsData.release_year}
+        </p>
       </li>
       <li>
-        Speed:
-        {carsData.speed}
+        <p>
+          <span>Speed :: </span>
+          {carsData.speed}
+        </p>
       </li>
       <li>
-        Price:
-        {carsData.price}
+        <p>
+          <span>Price :: </span>
+          {carsData.price}
+        </p>
       </li>
       <li>
-        Color:
-        {carsData.color}
+        <p>
+          <span>Color :: </span>
+          {carsData.color}
+        </p>
       </li>
     </ul>
   );

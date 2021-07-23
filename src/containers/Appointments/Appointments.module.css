@@ -1,9 +1,12 @@
-.appointments {
-  margin: 10px;
-  width: 100%;
+.title {
+  text-align: center;
 }
 
-.title {
-  padding: 1rem;
-  text-align: center;
+.appointment_info {
+  color: #97bf1c;
+  font-weight: bold;
+}
+
+.appointment_info span {
+  color: black;
 }

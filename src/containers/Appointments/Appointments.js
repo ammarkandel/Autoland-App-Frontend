@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
+import List from '../../components/List/List';
 import classes from './Appointments.module.css';
 import { useGetAppointmentsQuery } from '../../store/services/appointment_slice';
 import { userActions } from '../../store/slices/UserDataSlice';
@@ -18,21 +19,21 @@ const Appointments = () => {
       const allUserAppointments = data.filter((appointment) => appointment.user_id == userId);
       return (
         <>
-          <div className={classes.appointments}>
-            <h2 className={classes.title}>All Appointments You Booked</h2>
+          <h2 className={classes.title}>All Appointments You Booked</h2>
+          <List>
             {allUserAppointments.map((appointment) => (
               <Card key={appointment.id}>
-                <h3>
-                  Date:
+                <p className={classes.appointment_info}>
+                  <span>Date ::  </span>
                   {appointment.date}
-                </h3>
-                <h3>
-                  Time:
+                </p>
+                <p className={classes.appointment_info}>
+                  <span>Time ::  </span>
                   {appointment.time}
-                </h3>
+                </p>
               </Card>
             ))}
-          </div>
+          </List>
         </>
       );
     }

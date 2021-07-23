@@ -20,12 +20,19 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 100%;
-  margin: 20px 0 20px 0;
+  margin: 50px;
 }
 
 .details li {
   border: 1px solid #97bf1c;
   padding: 1rem;
   margin-top: 1rem;
+  background-color: black;
+  color: #97bf1c;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.details li span {
+  color: white;
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useGetCarsQuery } from '../../store/services/get_cars_slice';
 import Card from '../../components/Card/Card';
+import List from '../../components/List/List';
 import classes from './Cars.module.css';
 import carImg from '../../assets/Tesla-Model-S.png';
 
@@ -11,7 +12,7 @@ const Cars = () => {
     if (data) {
       return (
         <>
-          <div className={classes.cars}>
+          <List>
             {data.map((car) => (
               <Card key={car.id}>
                 <img src={carImg} alt={car.name} height="150" width="220" />
@@ -25,10 +26,10 @@ const Cars = () => {
                     {car.category}
                   </p>
                 </div>
-                <Link className={`${classes.detail_btn} details`} to={`/cars/:${car.id}`}>Details</Link>
+                <Link className={`${classes.detail_btn} car_details_btn`} to={`/cars/:${car.id}`}>Details</Link>
               </Card>
             ))}
-          </div>
+          </List>
         </>
       );
     }

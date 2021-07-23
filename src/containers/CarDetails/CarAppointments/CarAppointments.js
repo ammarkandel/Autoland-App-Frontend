@@ -13,12 +13,16 @@ const CarAppointments = ({ id, userId }) => {
           {carAppointments.map((item) => (
             <li key={item.id}>
               <h3>
-                Date:
-                {item.date}
+                <p>
+                  <span>Date ::  </span>
+                  {item.date}
+                </p>
               </h3>
               <h3>
-                Time:
-                {item.time}
+                <p>
+                  <span>Time ::  </span>
+                  {item.time}
+                </p>
               </h3>
             </li>
           ))}

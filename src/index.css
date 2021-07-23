@@ -60,7 +60,7 @@ a {
   flex: 1;
 }
 
-button, .details {
+button, .car_details_btn {
   font: inherit;
   background-color: #97bf1c;
   color: white;

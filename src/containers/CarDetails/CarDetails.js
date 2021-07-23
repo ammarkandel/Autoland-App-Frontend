@@ -41,9 +41,9 @@ const CarDetails = () => {
 
   return (
     <>
-      <h3>- Tests drive booked -</h3>
+      <h2>- Tests booked -</h2>
       <CarAppointments id={id} userId={userId} />
-      <h3>- Car Details -</h3>
+      <h2>- Car Details -</h2>
       <CarInfo data={carData} id={id} />
       <TestDriveForm id={id} userId={userId} />
     </>
