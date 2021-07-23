@@ -22,7 +22,7 @@
 
 ### How to run this project
 
-- First: clone the repo `git clone git@github.com:ammarkandel/Autoland-App-Frontend.git` and open the folder `cd Restaurant-Menu`.
+- First: clone the repo `git clone git@github.com:ammarkandel/Autoland-App-Frontend.git` and open the folder `cd Autoland-App-Frontend`.
 - Second: Make sure you have yarn globally in your machine `yarn --version` if not run `npm install --global yarn`.
 - Third: Make sure you in the project path in the terminal then run `yarn install` and `yarn start` to start the localhost.
 - Fourth: your localhost should be `http://localhost:3000/`
