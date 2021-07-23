@@ -6,27 +6,34 @@ const CarAppointments = ({ id, userId }) => {
   const { data: appointmentInfo, isLoading } = useGetAppointmentsQuery();
 
   const renderCarAppoinments = () => {
-    if (appointmentInfo && appointmentInfo.length > 0) {
+    if (appointmentInfo) {
       const carAppointments = appointmentInfo.filter((appointment) => appointment.car_id == id && appointment.user_id == userId);
+      if (carAppointments.length > 0) {
+        return (
+          <ul className={classes.details}>
+            {carAppointments.map((item) => (
+              <li key={item.id}>
+                <h3>
+                  <p>
+                    <span>Date ::  </span>
+                    {item.date}
+                  </p>
+                </h3>
+                <h3>
+                  <p>
+                    <span>Time ::  </span>
+                    {item.time}
+                  </p>
+                </h3>
+              </li>
+            ))}
+          </ul>
+        );
+      }
       return (
-        <ul className={classes.details}>
-          {carAppointments.map((item) => (
-            <li key={item.id}>
-              <h3>
-                <p>
-                  <span>Date ::  </span>
-                  {item.date}
-                </p>
-              </h3>
-              <h3>
-                <p>
-                  <span>Time ::  </span>
-                  {item.time}
-                </p>
-              </h3>
-            </li>
-          ))}
-        </ul>
+        <>
+          <h2>No booked test drive for this car yet</h2>
+        </>
       );
     }
     return (
