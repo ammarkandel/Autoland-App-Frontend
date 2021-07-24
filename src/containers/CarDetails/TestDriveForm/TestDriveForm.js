@@ -1,4 +1,3 @@
-/* eslint-disable */
 import useInput from '../../../hooks/use-input';
 import { useAddTestDriveMutation } from '../../../store/services/appointment_slice';
 
@@ -8,7 +7,6 @@ const TestDriveForm = ({ id, userId }) => {
   const isValidTime = (value) => !isEmpty(value);
   const [
     addTestDrive,
-    {isLoading, isSuccess, isError}
   ] = useAddTestDriveMutation();
 
   const {
@@ -54,8 +52,8 @@ const TestDriveForm = ({ id, userId }) => {
                   &appointment[car_id]=${testDriveData.car_id}`;
 
     addTestDrive(appointmentData).then(() => {
-      window.location.href = `${window.location.origin}/user_appointments`;
-    })
+      window.location.reload();
+    });
     resetDate();
     resetTime();
   };
