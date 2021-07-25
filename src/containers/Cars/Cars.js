@@ -26,7 +26,7 @@ const Cars = () => {
                     {car.category}
                   </p>
                 </div>
-                <Link className={`${classes.detail_btn} car_details_btn`} to={`/cars/:${car.id}`}>Details</Link>
+                <Link className="car_details_btn" to={`/cars/:${car.id}`}>Details</Link>
               </Card>
             ))}
           </List>

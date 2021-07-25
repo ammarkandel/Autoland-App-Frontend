@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
 import List from '../../components/List/List';
@@ -16,21 +17,27 @@ const Appointments = () => {
 
   const renderAppointments = () => {
     if (data && data.length > 0) {
-      const allUserAppointments = data.filter((appointment) => appointment.user_id == userId);
+      const allUserAppointments = data.filter((appointment) => appointment.user_id == userId).reverse();
       return (
         <>
           <h2 className={classes.title}>All Appointments You Booked</h2>
           <List>
-            {allUserAppointments.map((appointment) => (
+            {allUserAppointments.map((appointment, index) => (
               <Card key={appointment.id}>
+                <span>{allUserAppointments.length - index}</span>
                 <p className={classes.appointment_info}>
-                  <span>Date ::  </span>
+                  <span>The date to test the car ::  </span>
                   {appointment.date}
                 </p>
                 <p className={classes.appointment_info}>
-                  <span>Time ::  </span>
+                  <span>The time to test the car ::  </span>
                   {appointment.time}
                 </p>
+                <p className={classes.appointment_info}>
+                  <span>Ordered at ::  </span>
+                  {appointment.created_at.split('T')[0]}
+                </p>
+                <Link className="car_details_btn" to={`/cars/:${appointment.car_id}`}>About</Link>
               </Card>
             ))}
           </List>

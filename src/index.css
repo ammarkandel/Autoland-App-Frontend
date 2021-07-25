@@ -70,6 +70,19 @@ button, .car_details_btn {
   cursor: pointer;
 }
 
+.car_details_btn {
+  text-decoration: none;
+  font-weight: 600;
+  width: 100px;
+  margin-top: 20px;
+}
+
+.count {
+  height: 30px;
+  width: 30px;
+  border-bottom: #97bf1c solid 2px;
+}
+
 .form-actions button {
   margin-left: 1rem;
 }
