@@ -24,7 +24,7 @@ const Appointments = () => {
           <List>
             {allUserAppointments.map((appointment, index) => (
               <Card key={appointment.id}>
-                <span>{allUserAppointments.length - index}</span>
+                <span className="count">{allUserAppointments.length - index}</span>
                 <p className={classes.appointment_info}>
                   <span>The date to test the car ::  </span>
                   {appointment.date}

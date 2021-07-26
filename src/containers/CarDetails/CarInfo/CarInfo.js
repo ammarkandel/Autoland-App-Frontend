@@ -1,5 +1,6 @@
 import detailsClasses from '../CarDetails.module.css';
 import CarInfoClasses from './CarInfo.module.css';
+import carImg from '../../../assets/Tesla-Model-S.png';
 
 const CarInfo = ({ data, id }) => {
   let carsData = [];
@@ -9,6 +10,7 @@ const CarInfo = ({ data, id }) => {
   return (
     <>
       <h1 className={CarInfoClasses.car_name}>{carsData.name}</h1>
+      <img src={carImg} alt={carsData.name} width="60%" />
       <ul className={detailsClasses.details}>
         <li>
           <p>
