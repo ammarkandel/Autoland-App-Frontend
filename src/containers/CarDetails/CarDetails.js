@@ -7,6 +7,7 @@ import CarInfo from './CarInfo/CarInfo';
 import CarAppointments from './CarAppointments/CarAppointments';
 import TestDriveForm from './TestDriveForm/TestDriveForm';
 import { userActions } from '../../store/slices/UserDataSlice';
+import classes from './CarDetails.module.css';
 
 const CarDetails = () => {
   const { data: carData, isLoading, isError } = useGetCarsQuery();
@@ -41,10 +42,12 @@ const CarDetails = () => {
 
   return (
     <>
-      <CarInfo data={carData} id={id} />
-      <h2>- Tests booked -</h2>
+      <div className={classes.details_container}>
+        <CarInfo data={carData} id={id} />
+        <TestDriveForm id={id} userId={userId} />
+      </div>
+      <h2>- Tests booked for this car -</h2>
       <CarAppointments id={id} userId={userId} />
-      <TestDriveForm id={id} userId={userId} />
     </>
   );
 };

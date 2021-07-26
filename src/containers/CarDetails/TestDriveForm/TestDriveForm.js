@@ -1,5 +1,6 @@
 import useInput from '../../../hooks/use-input';
 import { useAddTestDriveMutation } from '../../../store/services/appointment_slice';
+import classes from './TestDriveForm.module.css';
 
 const TestDriveForm = ({ id, userId }) => {
   const isEmpty = (str) => !str.trim().length;
@@ -62,7 +63,7 @@ const TestDriveForm = ({ id, userId }) => {
   const dateClasses = dateHasError ? 'form-control invalid' : 'form-control';
 
   return (
-    <form className="appointment" onSubmit={submitHandler}>
+    <form className={classes.book_form} onSubmit={submitHandler}>
       <h3>- Book test drive -</h3>
       <div className={dateClasses}>
         <label htmlFor="date">
