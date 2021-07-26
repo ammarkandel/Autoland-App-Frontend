@@ -7,8 +7,6 @@
 - react.js
 - css
 - @reduxjs-toolkit
-- ruby on rails
-- postgrsql
 
 ## Backend repo:
 
@@ -27,6 +25,20 @@
 - Third: Make sure you in the project path in the terminal then run `yarn install` and `yarn start` to start the localhost.
 - Fourth: your localhost should be `http://localhost:3000/`
 
+### Screens:
+
+- ![screen](./src/assets/screen_1.png)
+
+- ![screen](./src/assets/screen_2.png)
+
+- ![screen](./src/assets/screen_3.png)
+
+- ![screen](./src/assets/screen_4.png)
+
+- ![screen](./src/assets/screen_5.png)
+
+- ![screen](./src/assets/screen_6.png)
+
 ### Author
 
 👤 **Ammar El refay Kandel**
@@ -34,10 +46,6 @@
 - GitHub: [ammarkandel](https://github.com/ammarkandel)
 - Twitter: [@AmmarQandel](https://twitter.com/AmmarQandel)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ammar-kandel-7b4100193/)
-
-### Contributing
-
-This is a project for educational purposes only. We are not accepting contributions.
 
 ### Show your support
 
