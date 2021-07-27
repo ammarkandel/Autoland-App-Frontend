@@ -8,38 +8,36 @@ const CarInfo = ({ data, id }) => {
   }
   return (
     <>
-      <section className={CarInfoClasses.carInfo}>
-        <ul className={CarInfoClasses.info_list}>
-          <li>
-            <p>
-              <span>Release year :: </span>
-              {carsData.release_year}
-            </p>
-          </li>
-          <li>
-            <p>
-              <span>Speed :: </span>
-              {carsData.speed}
-            </p>
-          </li>
-          <li>
-            <p>
-              <span>Price :: </span>
-              {carsData.price}
-            </p>
-          </li>
-          <li>
-            <p>
-              <span>Color :: </span>
-              {carsData.color}
-            </p>
-          </li>
-        </ul>
-        <div>
-          <h1 className={CarInfoClasses.car_name}>{carsData.name}</h1>
-          <img src={carImg} alt={carsData.name} width="120%" />
-        </div>
-      </section>
+      <ul className={CarInfoClasses.info_list}>
+        <li>
+          <p>
+            <span>Release year :: </span>
+            {carsData.release_year}
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>Speed :: </span>
+            {carsData.speed}
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>Price :: </span>
+            {carsData.price}
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>Color :: </span>
+            {carsData.color}
+          </p>
+        </li>
+      </ul>
+      <div>
+        <h1 className={CarInfoClasses.car_name}>{carsData.name}</h1>
+        <img src={carImg} alt={carsData.name} width="90%" />
+      </div>
     </>
   );
 };
