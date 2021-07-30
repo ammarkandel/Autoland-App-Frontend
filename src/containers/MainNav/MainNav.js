@@ -10,7 +10,6 @@ const MainNav = () => {
     dispatch(
       authActions.showNotification({
         status: 'success',
-        title: 'Logout!',
         message: 'Logout successfully!',
       }),
     );
@@ -24,6 +23,24 @@ const MainNav = () => {
   };
   const auth = localStorage.getItem('jwt');
 
+  const checkAuth = () => {
+    if (!auth) {
+      dispatch(
+        authActions.showNotification({
+          status: 'error',
+          message: 'Please Sign in first',
+        }),
+      );
+      setTimeout(() => {
+        dispatch(
+          authActions.hideNotification({
+            status: 'hide',
+          }),
+        );
+      }, 1000);
+    }
+  };
+
   return (
     <nav className={classes.main_nav}>
       <h1>
@@ -32,8 +49,8 @@ const MainNav = () => {
       </h1>
 
       <ul className={classes.nav_links}>
-        <li><NavLink to="/user_appointments">MyAppointments</NavLink></li>
-        <li><NavLink to="/cars">Cars</NavLink></li>
+        <li><NavLink to="/user_appointments" onClick={() => checkAuth()}>MyAppointments</NavLink></li>
+        <li><NavLink to="/cars" onClick={() => checkAuth()}>Cars</NavLink></li>
         {auth && (
           <>
             <li><Link to="/login" onClick={() => logoutHandler()}>Logout</Link></li>

@@ -21,7 +21,6 @@ function App() {
         && (
         <Notification
           message={notification.message}
-          title={notification.title}
           status={notification.status}
         />
         )
