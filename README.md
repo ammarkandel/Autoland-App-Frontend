@@ -33,9 +33,9 @@
 
 - ![screen](./src/assets/screen_3.png)
 
-- ![screen](./src/assets/screen_4.png)
+- ![screen](./src/assets/screen_44.png)
 
-- ![screen](./src/assets/screen_5.png)
+- ![screen](./src/assets/screen_55.png)
 
 - ![screen](./src/assets/screen_6.png)
 
