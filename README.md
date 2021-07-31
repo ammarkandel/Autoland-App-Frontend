@@ -41,8 +41,8 @@
 
 ### Future Features:
 
-- Add delete action to appointments
-- Change loading notification
+- Add delete action to appointments.
+- Change loading notification style.
 
 ### Author
 
