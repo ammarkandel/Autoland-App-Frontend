@@ -39,6 +39,11 @@
 
 - ![screen](./src/assets/screen_6.png)
 
+### Future Features:
+
+- Add delete action to appointments
+- Change loading notification
+
 ### Author
 
 👤 **Ammar El refay Kandel**
