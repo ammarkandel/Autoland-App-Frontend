@@ -14,11 +14,11 @@
 
 `github.com/ammarkandel/Autoland-App-Backend`
 
-## Live Version
+## Live Version:
 
 [Live Version](https://autoland-app.vercel.app/)
 
-### How to run this project
+### How to run this project:
 
 - First: clone the repo `git clone git@github.com:ammarkandel/Autoland-App-Frontend.git` and open the folder `cd Autoland-App-Frontend`.
 - Second: Make sure you have yarn globally in your machine `yarn --version` if not run `npm install --global yarn`.
@@ -44,7 +44,7 @@
 - Add delete action to appointments.
 - Change loading notification style.
 
-### Author
+### Author:
 
 👤 **Ammar El refay Kandel**
 
