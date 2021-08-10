@@ -1,8 +1,6 @@
-/* eslint-disable */
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/use-input';
 import login from '../store/services/login_action';
-import { authActions } from '../store/slices/AuthSlice';
 
 const charNumber = (value) => value.length >= 6;
 const isEmail = (value) => value.length > 5 && value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);

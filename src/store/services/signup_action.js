@@ -24,7 +24,7 @@ const signup = (signupData) => async (dispatch) => {
     );
 
     if (!response.ok) {
-      throw new Error('Signup failed!');
+      throw new Error('Signup failed! (Found user with same data)');
     }
   };
 

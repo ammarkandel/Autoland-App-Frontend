@@ -47,7 +47,7 @@ const login = (loginData) => async (dispatch) => {
     dispatch(
       authActions.showNotification({
         status: 'error',
-        message: 'Sign in failed!',
+        message: 'Sign in failed! (Invalid email or password)',
       }),
     );
     setTimeout(() => {
